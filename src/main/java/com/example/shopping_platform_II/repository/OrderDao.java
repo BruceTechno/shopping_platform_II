@@ -30,4 +30,6 @@ public interface OrderDao extends JpaRepository<Order,Integer> {
 			@Param("payWay")int payWay,
 			@Param("deliveryWay")int deliveryWay,
 			@Param("status")int status);
+	
+	public Order findByAccountBuyAndOrderNumber(String accountBuy,Integer orderNumber);
 }

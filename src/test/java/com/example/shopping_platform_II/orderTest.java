@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.shopping_platform_II.repository.OrderDao;
 import com.example.shopping_platform_II.service.ifs.OrderService;
 import com.example.shopping_platform_II.service.vo.AddOrderResponse;
+import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
 
 @SpringBootTest(classes =ShoppingPlatformIiApplication.class )
 class orderTest {
@@ -21,7 +22,7 @@ class orderTest {
 	OrderService orderService;
 
 	@Test
-	void addOrderTest() {
+	public void addOrderTest() {
 		Map<Integer, Integer> iteMap = new HashMap< >();
 		iteMap.put(1, 1);
 		iteMap.put(2, 1);
@@ -30,5 +31,13 @@ class orderTest {
 //		AddOrderResponse res = orderService.addOrder("123","123", iteMap, 0, 0);
 		System.out.println();
 	}
+	
+	@Test
+	public void deleteOrderTest() {
+		DeleteOrderResponse res = orderService.deleteOrder("123", "123", 4123);
+		System.out.println();
+	}
+	
+	
 
 }

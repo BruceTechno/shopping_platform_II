@@ -7,6 +7,7 @@ public enum RtnCode {
 	SUCCESSFUL("200","Successful !"),
 	CANNOT_EMPTY("400","OrderInfo can not empty!!"),
 	DATA_ERROR("400","Data is error!!"),
+	CAN_NOT_DELETE("400","Order Can not Delete !"),
 	NOT_FOUND("404","Not found"),
 	INVENTORY_NOT_ENOUGH("400","Inventory not enough !"),
 	ERROR("400","Error  ! "),

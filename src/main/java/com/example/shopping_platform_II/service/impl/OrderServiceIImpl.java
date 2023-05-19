@@ -12,19 +12,22 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.example.shopping_platform_II.constants.RtnCode;
 import com.example.shopping_platform_II.entity.Commodity;
-
+import com.example.shopping_platform_II.entity.Order;
 import com.example.shopping_platform_II.repository.CommodityDao;
 import com.example.shopping_platform_II.repository.OrderDao;
 
 import com.example.shopping_platform_II.service.ifs.OrderService;
 import com.example.shopping_platform_II.service.vo.AddOrderResponse;
+import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import net.bytebuddy.asm.Advice.Return;
 
 @Service
 public class OrderServiceIImpl implements OrderService {
@@ -45,6 +48,8 @@ public class OrderServiceIImpl implements OrderService {
 		if (!StringUtils.hasText(account_buy) || !StringUtils.hasText(pwd)) {
 			return new AddOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
 		}
+		
+		
 
 		// order check
 		if (orderInfo.size() <= 0) {
@@ -70,7 +75,7 @@ public class OrderServiceIImpl implements OrderService {
 			commodityDao.save(op.get());
 		}
 
-		// test 一次買多位不同買家
+		// test 一次買多位不同買家,分別成立訂單
 		for (String accountNumItem : accountCount) {
 
 			Map<Integer, Integer> newOrderInfo = new HashMap<Integer, Integer>();
@@ -111,7 +116,27 @@ public class OrderServiceIImpl implements OrderService {
 	}
 
 	@Override
-	public void deleteOrder() {
+	public DeleteOrderResponse deleteOrder(String account_buy, String pwd, int orderNumber) {
+
+		// login check
+		if (!StringUtils.hasText(account_buy) || !StringUtils.hasText(pwd)) {
+			// plz login
+			return new DeleteOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
+		}
+
+		// check account_buy have this orderNumber
+		Order orderInfo = orderDao.findByAccountBuyAndOrderNumber(account_buy, orderNumber);
+		if (orderInfo == null) {
+			return new DeleteOrderResponse(RtnCode.NOT_FOUND.getCode());
+		}
+
+		if (orderInfo.getStatus() == 3) {
+			return new DeleteOrderResponse(RtnCode.CAN_NOT_DELETE.getCode());
+		}
+
+		orderDao.deleteById(orderNumber);
+		
+		return new DeleteOrderResponse(RtnCode.SUCCESSFUL.getCode());
 
 	}
 
