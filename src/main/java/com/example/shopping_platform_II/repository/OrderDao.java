@@ -18,13 +18,14 @@ public interface OrderDao extends JpaRepository<Order,Integer> {
 	
 	@Transactional
 	@Modifying
-	@Query(value ="insert into order_info (order_number , account , order_info "
-			+ ", pay_way , delivery_way , status ) select :orderNumber , :account , "
+	@Query(value ="insert into order_info (order_number , account_buy , account_sell , order_info "
+			+ ", pay_way , delivery_way , status ) select :orderNumber ,:accountBuy, :accountSell , "
 			+ ":orderInfo , :payWay , :deliveryWay , :status where not exists "
 			+ "(select 1 from order_info where order_number = :orderNumber)" ,nativeQuery = true)
 	public int addOrderWhereNotExists(
 			@Param("orderNumber")int oorderNumber,
-			@Param("account")String account,
+			@Param("accountBuy")String accountBuy,
+			@Param("accountSell")String accountSell,
 			@Param("orderInfo")String orderInfo,
 			@Param("payWay")int payWay,
 			@Param("deliveryWay")int deliveryWay,

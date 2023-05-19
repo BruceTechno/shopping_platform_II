@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.shopping_platform_II.repository.OrderDao;
 import com.example.shopping_platform_II.service.ifs.OrderService;
+import com.example.shopping_platform_II.service.vo.AddOrderResponse;
 
 @SpringBootTest(classes =ShoppingPlatformIiApplication.class )
 class orderTest {
@@ -26,7 +27,7 @@ class orderTest {
 		iteMap.put(2, 1);
 		iteMap.put(3, 1);
 		
-//		orderService.addOrder("123","123", iteMap, 0, 0);
+//		AddOrderResponse res = orderService.addOrder("123","123", iteMap, 0, 0);
 		System.out.println();
 	}
 

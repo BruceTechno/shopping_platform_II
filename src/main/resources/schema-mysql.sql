@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `identity_code` (
   `identity` VARCHAR(45) NULL,
   PRIMARY KEY (`code`));
 
-CREATE TABLE IF NOT EXISTS `order` (
+CREATE TABLE IF NOT EXISTS `order_info` (
   `order_number` INT NOT NULL,
   `account` VARCHAR(45) NULL,
   `order_info` VARCHAR(200) NULL,

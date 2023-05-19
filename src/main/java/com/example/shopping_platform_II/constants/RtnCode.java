@@ -8,7 +8,7 @@ public enum RtnCode {
 	CANNOT_EMPTY("400","OrderInfo can not empty!!"),
 	DATA_ERROR("400","Data is error!!"),
 	NOT_FOUND("404","Not found"),
-	FILE_EXISTS("400","File is exists!"),
+	INVENTORY_NOT_ENOUGH("400","Inventory not enough !"),
 	ERROR("400","Error  ! "),
 	PLEASE_LOGIN_FIRST("403","Please Login First !");
 	

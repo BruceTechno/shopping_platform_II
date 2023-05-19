@@ -21,8 +21,8 @@ public class Commodity {
     private int price;
     @Column(name = "status")
     private int status;
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "account_sell")
+    private String accountSell;
 //========================================================================================================
 
     public Commodity() {
@@ -77,11 +77,15 @@ public class Commodity {
         this.status = status;
     }
 
-    public int getUserId() {
-        return userId;
-    }
+	public String getAccountSell() {
+		return accountSell;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setAccountSell(String accountSell) {
+		this.accountSell = accountSell;
+	}
+
+    
+
+   
 }
