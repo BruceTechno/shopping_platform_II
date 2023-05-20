@@ -13,8 +13,8 @@ public class Order {
     private int orderNumber;
     @Column(name = "account_buy")
     private String accountBuy;
-    @Column(name = "account_sell")
-    private String accountSell;
+    @Column(name = "account_sale")
+    private String accountSale;
     @Column(name = "order_info")
     private String orderInfo;
     @Column(name = "pay_way")
@@ -46,12 +46,14 @@ public class Order {
 		this.accountBuy = accountBuy;
 	}
 
-	public String getAccountSell() {
-		return accountSell;
+	
+
+	public String getAccountSale() {
+		return accountSale;
 	}
 
-	public void setAccountSell(String accountSell) {
-		this.accountSell = accountSell;
+	public void setAccountSale(String accountSale) {
+		this.accountSale = accountSale;
 	}
 
 	public String getOrderInfo() {

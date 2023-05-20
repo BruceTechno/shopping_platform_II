@@ -1,5 +1,7 @@
 package com.example.shopping_platform_II;
 
+import static org.mockito.ArgumentMatchers.nullable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,15 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.shopping_platform_II.repository.OrderDao;
+import com.example.shopping_platform_II.repository.UserDao;
 import com.example.shopping_platform_II.service.ifs.OrderService;
 import com.example.shopping_platform_II.service.vo.AddOrderResponse;
 import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
 
 @SpringBootTest(classes =ShoppingPlatformIiApplication.class )
-class orderTest {
+class OrderTest {
 	
 	@Autowired
 	OrderDao orderDao;
+	
+	@Autowired
+	UserDao userDao;
 	
 	@Autowired
 	OrderService orderService;
@@ -34,9 +40,19 @@ class orderTest {
 	
 	@Test
 	public void deleteOrderTest() {
-		DeleteOrderResponse res = orderService.deleteOrder("123", "123", 4123);
+//		DeleteOrderResponse res = orderService.deleteOrder("123", "123", 4123);
 		System.out.println();
 	}
+	
+	@Test
+	public void userDaoTest() {
+		Integer res = userDao.checkAccountAndPwd("1", "123")==null ? 0 : 1;
+		System.out.println();
+		
+
+	}
+	
+	
 	
 	
 

@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS `identity_code` (
 
 CREATE TABLE IF NOT EXISTS `order_info` (
   `order_number` INT NOT NULL,
-  `account` VARCHAR(45) NULL,
+  `account_buy` VARCHAR(45) NULL,
+  `account_sale` VARCHAR(45) NULL,
   `order_info` VARCHAR(200) NULL,
   `pay_way` INT NULL DEFAULT 0,
   `delivery_way` INT NULL DEFAULT 0,

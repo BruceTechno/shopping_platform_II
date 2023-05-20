@@ -10,8 +10,8 @@ public enum RtnCode {
 	CAN_NOT_DELETE("400","Order Can not Delete !"),
 	NOT_FOUND("404","Not found"),
 	INVENTORY_NOT_ENOUGH("400","Inventory not enough !"),
-	ERROR("400","Error  ! "),
-	PLEASE_LOGIN_FIRST("403","Please Login First !");
+	ACCOUNT_PWD_ERROR("401","Account or password error !"),
+	PLEASE_LOGIN_FIRST("400","Please Login First !");
 	
 	private String code;
 	
