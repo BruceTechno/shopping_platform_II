@@ -45,12 +45,17 @@ class OrderTest {
 	}
 	
 	@Test
-	public void userDaoTest() {
-		Integer res = userDao.checkAccountAndPwd("1", "123")==null ? 0 : 1;
-		System.out.println();
+	public void updateOrderTest() {
+		Map<Integer, Integer> iteMap = new HashMap< >();
+		iteMap.put(1, 1);
+		iteMap.put(2, 1);
+		iteMap.put(3, 1);
 		
+//		orderService.updateOrder("123", "123", 4123, iteMap);
 
 	}
+	
+	
 	
 	
 	

@@ -4,9 +4,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.example.shopping_platform_II.entity.Order;
 import com.example.shopping_platform_II.service.vo.AddOrderResponse;
 import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
 import com.example.shopping_platform_II.service.vo.SearchOrderResponse;
+import com.example.shopping_platform_II.service.vo.UpdateOrderResponse;
 
 public interface OrderService {
 	
@@ -14,7 +16,9 @@ public interface OrderService {
 	
 	public DeleteOrderResponse deleteOrder(HttpSession httpSession ,int orderNumber );
 	
-	public SearchOrderResponse searchOrderByAccountBuy(String account,String pwd);
+	public SearchOrderResponse searchOrderByAccountBuy(HttpSession httpSession);
 	
-	public SearchOrderResponse searchOrderByAccountsale(String account,String pwd);
+	public SearchOrderResponse searchOrderByAccountSale(HttpSession httpSession);
+	
+	public UpdateOrderResponse updateOrder(HttpSession httpSession , int orderNumber , Map<Integer, Integer> orderInfos);
 }
