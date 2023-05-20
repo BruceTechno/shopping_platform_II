@@ -41,17 +41,16 @@ public class OrderServiceIImpl implements OrderService {
 	@Override
 	public AddOrderResponse addOrder(HttpSession httpSession, Map<Integer, Integer> orderInfos, int payWay,
 			int deliveryWay) {
+		
 		String accountBuy = (String) httpSession.getAttribute("account");
+		
 		String pwd = (String) httpSession.getAttribute("pwd");
 
-		// login check
-		if (checkLogin(accountBuy, pwd) == false) {
-			return new AddOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
-		}
-
-		// account pwd check
-		if (checkAccountAndPwd(accountBuy, pwd) == false) {
-			return new AddOrderResponse(RtnCode.ACCOUNT_PWD_ERROR.getCode());
+		// login check && account and password check
+		RtnCode res = checkLogin(accountBuy, pwd);
+		
+		if (res != null) {
+			return new AddOrderResponse(res.getCode());
 		}
 
 		// order check
@@ -70,6 +69,7 @@ public class OrderServiceIImpl implements OrderService {
 			Optional<Commodity> op = commodityDao.findById(item.getKey());
 
 			comAndUser.put(item.getKey(), op.get().getAccountSell());
+			
 			accountSaleSet.add(op.get().getAccountSell());
 
 			// 減少庫存
@@ -77,6 +77,7 @@ public class OrderServiceIImpl implements OrderService {
 				return new AddOrderResponse(RtnCode.INVENTORY_NOT_ENOUGH.getCode());
 			}
 			op.get().setInventory(op.get().getInventory() - item.getValue());
+			
 			commodityDao.save(op.get());
 		}
 
@@ -95,13 +96,15 @@ public class OrderServiceIImpl implements OrderService {
 					}
 				}
 			}
-			
+
 			// change map to string
 			String orderInfoStr = mapToString(orderInfos);
 
 			boolean checkOrderNumber = true;
+			
 			while (checkOrderNumber) {
 				int orderNumber = (int) (Math.random() * 10000 + 1);
+				
 				int check = orderDao.addOrderWhereNotExists(orderNumber, accountBuy, accountSaleItem, orderInfoStr,
 						payWay, deliveryWay, 0);
 				checkOrderNumber = check == 1 ? false : true;
@@ -117,19 +120,17 @@ public class OrderServiceIImpl implements OrderService {
 	public DeleteOrderResponse deleteOrder(HttpSession httpSession, int orderNumber) {
 
 		String accountBuy = (String) httpSession.getAttribute("account");
+		
 		String pwd = (String) httpSession.getAttribute("pwd");
-		// login check
-		if (checkLogin(accountBuy, pwd) == false) {
-			return new DeleteOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
-		}
-
-		// account pwd check
-		if (checkAccountAndPwd(accountBuy, pwd) == false) {
-			return new DeleteOrderResponse(RtnCode.ACCOUNT_PWD_ERROR.getCode());
+		// login check && account and password check
+		RtnCode res = checkLogin(accountBuy, pwd);
+		if (res != null) {
+			return new DeleteOrderResponse(res.getCode());
 		}
 
 		// check account_buy have this orderNumber
 		Order orderInfo = orderDao.findByAccountBuyAndOrderNumber(accountBuy, orderNumber);
+		
 		if (orderInfo == null) {
 			return new DeleteOrderResponse(RtnCode.NOT_FOUND.getCode());
 		}
@@ -148,15 +149,13 @@ public class OrderServiceIImpl implements OrderService {
 	public SearchOrderResponse searchOrderByAccountBuy(HttpSession httpSession) {
 
 		String accountBuy = (String) httpSession.getAttribute("account");
+		
 		String pwd = (String) httpSession.getAttribute("pwd");
-		// login check
-		if (checkLogin(accountBuy, pwd) == false) {
-			return new SearchOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
-		}
-
-		// account pwd check
-		if (checkAccountAndPwd(accountBuy, pwd) == false) {
-			return new SearchOrderResponse(RtnCode.ACCOUNT_PWD_ERROR.getCode());
+		// login check && account and password check
+		RtnCode res = checkLogin(accountBuy, pwd);
+		
+		if (res != null) {
+			return new SearchOrderResponse(res.getCode());
 		}
 
 		// check order exists
@@ -174,15 +173,13 @@ public class OrderServiceIImpl implements OrderService {
 	public SearchOrderResponse searchOrderByAccountSale(HttpSession httpSession) {
 
 		String accountSale = (String) httpSession.getAttribute("account");
+		
 		String pwd = (String) httpSession.getAttribute("pwd");
-		// login check
-		if (checkLogin(accountSale, pwd) == false) {
-			return new SearchOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
-		}
-
-		// account pwd check
-		if (checkAccountAndPwd(accountSale, pwd) == false) {
-			return new SearchOrderResponse(RtnCode.ACCOUNT_PWD_ERROR.getCode());
+		// login check && account and password check
+		RtnCode res = checkLogin(accountSale, pwd);
+		
+		if (res != null) {
+			return new SearchOrderResponse(res.getCode());
 		}
 
 		// check order exists
@@ -197,72 +194,69 @@ public class OrderServiceIImpl implements OrderService {
 	}
 
 	@Override
-	public UpdateOrderResponse updateOrder(HttpSession httpSession, int orderNumber, Map<Integer, Integer> orderInfos) {
+	public UpdateOrderResponse updateOrder(HttpSession httpSession, int orderNumber,
+			Map<Integer, Integer> newOrderInfos) {
 
 		String accountBuy = (String) httpSession.getAttribute("account");
+		
 		String pwd = (String) httpSession.getAttribute("pwd");
 
-		// login check
-		if (checkLogin(accountBuy, pwd) == false) {
-			return new UpdateOrderResponse(RtnCode.PLEASE_LOGIN_FIRST.getCode());
-		}
-
-		// account pwd check
-		if (checkAccountAndPwd(accountBuy, pwd) == false) {
-			return new UpdateOrderResponse(RtnCode.ACCOUNT_PWD_ERROR.getCode());
+		// login check && account and password check
+			
+		if (checkLogin(accountBuy, pwd) != null) {
+			return new UpdateOrderResponse(checkLogin(accountBuy, pwd).getCode());
 		}
 
 		// check account_buy have this orderNumber
 		Order orderInfo = orderDao.findByAccountBuyAndOrderNumber(accountBuy, orderNumber);
+		
 		if (orderInfo == null) {
 			return new UpdateOrderResponse(RtnCode.NOT_FOUND.getCode());
 		}
 
 		// map can not empty
-		if (CollectionUtils.isEmpty(orderInfos)) {
+		if (CollectionUtils.isEmpty(newOrderInfos)) {
 			return new UpdateOrderResponse(RtnCode.CANNOT_EMPTY.getCode());
 		}
 
 		// change map to string
-		String orderInfoStr = mapToString(orderInfos);
-		
+		String orderInfoStr = mapToString(newOrderInfos);
+
 		orderInfo.setOrderInfo(orderInfoStr);
 
 		return new UpdateOrderResponse(RtnCode.SUCCESSFUL.getCode(), orderDao.save(orderInfo));
 
 	}
 
-	private boolean checkLogin(String accountBuy, String pwd) {
+	private RtnCode checkLogin(String account, String pwd) {
 		// login check
-		if (!StringUtils.hasText(accountBuy) || !StringUtils.hasText(pwd)) {
+		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
 			// plz login
-			return false;
+			return RtnCode.PLEASE_LOGIN_FIRST;
 		}
-		return true;
 
-	}
-
-	private boolean checkAccountAndPwd(String accountBuy, String pwd) {
-
-		Integer checkRes = userDao.checkAccountAndPwd(accountBuy, pwd) == null ? 0 : 1;
+		Integer checkRes = userDao.checkAccountAndPwd(account, pwd) == null ? 0 : 1;
 		if ((int) checkRes == 0) {
-			return false;
+			return RtnCode.ACCOUNT_PWD_ERROR;
 		}
 
-		return true;
+		return null;
+
 	}
 
 	private String mapToString(Map<Integer, Integer> orderInfos) {
 
 		// change map to string
 		ObjectMapper mapper = new ObjectMapper();
+		
 		String orderInfoStr = "";
+		
 		try {
 			orderInfoStr = mapper.writeValueAsString(orderInfos);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
+
 		return orderInfoStr;
 	}
 
