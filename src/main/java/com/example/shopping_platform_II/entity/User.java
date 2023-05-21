@@ -30,7 +30,15 @@ public class User {
     public User() {
 
     }
-//================================================================================================
+
+    public User(String account, String pwd, String name, String address, String phone) {
+        this.account = account;
+        this.pwd = pwd;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+    }
+    //================================================================================================
 
     public int getId() {
         return id;
