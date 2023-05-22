@@ -27,13 +27,30 @@ public class Commodity {
 
     public Commodity() {
     }
+
+//========================================================================================================
+
+    public Commodity(int number, String name, String category, int inventory, int price, int status, int userId) {
+		super();
+		this.number = number;
+		this.name = name;
+		this.category = category;
+		this.inventory = inventory;
+		this.price = price;
+		this.status = status;
+		this.userId = userId;
+	}
+    
+    
 //========================================================================================================
 
     public int getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    
+
+	public void setNumber(int number) {
         this.number = number;
     }
 
