@@ -41,6 +41,16 @@ public class UserController {
     public UpdateResponse updatePwd(@RequestBody  UpdateRequest request){
         return userService.updatePwd(request);
     }
-
-
+    @PostMapping(value = "update name")
+    public UpdateResponse updateName(@RequestBody UpdateRequest request){
+        return userService.updateName(request);
     }
+    @PostMapping(value = "update address")
+    public UpdateResponse updateAddress(@RequestBody UpdateRequest request){
+        return userService.updateAddress(request);
+    }
+    @PostMapping(value = "update phone")
+    public UpdateResponse updatePhone(@RequestBody UpdateRequest request){
+        return userService.updatePhone(request);
+    }
+}
