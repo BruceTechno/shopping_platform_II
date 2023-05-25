@@ -10,13 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AddOrderRequest {
 
 //	Map<Integer, Integer> orderInfo,int payWay , int deliveryWay
-	@JsonProperty("students")
+
 	private Map<Integer, Integer> orderInfo;
 	
-	@JsonProperty("students")
+
 	private int payWay;
 	
-	@JsonProperty("students")
+
 	private int deliveryWay;
 
 	public Map<Integer, Integer> getOrderInfo() {
