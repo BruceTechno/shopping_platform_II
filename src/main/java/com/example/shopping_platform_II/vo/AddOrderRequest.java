@@ -1,4 +1,4 @@
-package com.example.shopping_platform_II.service.vo;
+package com.example.shopping_platform_II.vo;
 
 
 import java.util.Map;

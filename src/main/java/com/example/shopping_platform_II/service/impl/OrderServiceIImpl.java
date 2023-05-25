@@ -21,10 +21,10 @@ import com.example.shopping_platform_II.repository.CommodityDao;
 import com.example.shopping_platform_II.repository.OrderDao;
 import com.example.shopping_platform_II.repository.UserDao;
 import com.example.shopping_platform_II.service.ifs.OrderService;
-import com.example.shopping_platform_II.service.vo.AddOrderResponse;
-import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
-import com.example.shopping_platform_II.service.vo.SearchOrderResponse;
-import com.example.shopping_platform_II.service.vo.UpdateOrderResponse;
+import com.example.shopping_platform_II.vo.AddOrderResponse;
+import com.example.shopping_platform_II.vo.DeleteOrderResponse;
+import com.example.shopping_platform_II.vo.SearchOrderResponse;
+import com.example.shopping_platform_II.vo.UpdateOrderResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

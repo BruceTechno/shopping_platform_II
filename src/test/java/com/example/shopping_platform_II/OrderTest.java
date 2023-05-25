@@ -12,8 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.shopping_platform_II.repository.OrderDao;
 import com.example.shopping_platform_II.repository.UserDao;
 import com.example.shopping_platform_II.service.ifs.OrderService;
-import com.example.shopping_platform_II.service.vo.AddOrderResponse;
-import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
+import com.example.shopping_platform_II.vo.AddOrderResponse;
+import com.example.shopping_platform_II.vo.DeleteOrderResponse;
 
 @SpringBootTest(classes =ShoppingPlatformIiApplication.class )
 class OrderTest {
