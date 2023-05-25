@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shopping_platform_II.service.ifs.OrderService;
-import com.example.shopping_platform_II.service.vo.AddOrderRequest;
-import com.example.shopping_platform_II.service.vo.AddOrderResponse;
-import com.example.shopping_platform_II.service.vo.DeleteOderRequest;
-import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
-import com.example.shopping_platform_II.service.vo.SearchOrderResponse;
-import com.example.shopping_platform_II.service.vo.UpdateOrderResponse;
+import com.example.shopping_platform_II.vo.AddOrderRequest;
+import com.example.shopping_platform_II.vo.AddOrderResponse;
+import com.example.shopping_platform_II.vo.DeleteOderRequest;
+import com.example.shopping_platform_II.vo.DeleteOrderResponse;
+import com.example.shopping_platform_II.vo.SearchOrderResponse;
+import com.example.shopping_platform_II.vo.UpdateOrderResponse;
 
 @RestController
 public class OrderController {

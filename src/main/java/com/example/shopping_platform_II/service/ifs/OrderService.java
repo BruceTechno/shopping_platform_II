@@ -5,10 +5,10 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import com.example.shopping_platform_II.entity.Order;
-import com.example.shopping_platform_II.service.vo.AddOrderResponse;
-import com.example.shopping_platform_II.service.vo.DeleteOrderResponse;
-import com.example.shopping_platform_II.service.vo.SearchOrderResponse;
-import com.example.shopping_platform_II.service.vo.UpdateOrderResponse;
+import com.example.shopping_platform_II.vo.AddOrderResponse;
+import com.example.shopping_platform_II.vo.DeleteOrderResponse;
+import com.example.shopping_platform_II.vo.SearchOrderResponse;
+import com.example.shopping_platform_II.vo.UpdateOrderResponse;
 
 public interface OrderService {
 	
