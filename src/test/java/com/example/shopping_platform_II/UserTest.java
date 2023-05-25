@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ShoppingPlatformIiApplicationTests {
+@SpringBootTest(classes = ShoppingPlatformIiApplication.class)
+class UserTest {
 @Autowired
 private UserService userService;
 

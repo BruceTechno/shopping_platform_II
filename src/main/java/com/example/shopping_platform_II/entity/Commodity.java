@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "commodity")
@@ -19,10 +20,10 @@ public class Commodity {
     private int inventory;
     @Column(name = "price")
     private int price;
-    @Column(name = "status")
-    private int status;
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "time")
+    private LocalDateTime time = LocalDateTime.now();
+    @Column(name = "account_sell")
+    private String accountSell;
 //========================================================================================================
 
     public Commodity() {
@@ -69,19 +70,23 @@ public class Commodity {
         this.price = price;
     }
 
-    public int getStatus() {
-        return status;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
-    public int getUserId() {
-        return userId;
-    }
+    public String getAccountSell() {
+		return accountSell;
+	}
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+	public void setAccountSell(String accountSell) {
+		this.accountSell = accountSell;
+	}
+
+    
+
+   
 }

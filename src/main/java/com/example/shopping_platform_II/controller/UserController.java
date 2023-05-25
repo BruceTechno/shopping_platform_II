@@ -31,9 +31,16 @@ public class UserController {
             session.setAttribute("verifyCode", verifyCode);
             session.setAttribute("account", request.getAccount());
             session.setAttribute("pwd",request.getPwd());
-            session.setMaxInactiveInterval(60);//設定session存活時間 單位:秒
+            session.setMaxInactiveInterval(6000);//設定session存活時間 單位:秒
             result.setSessionId(session.getId());
             result.setVerifyCode(verifyCode);
+
+            //session.removeAttribute("account");
+            //把下面這三個都改成remove
+            //  session.setAttribute("verifyCode", verifyCode);
+            //            session.setAttribute("account", request.getAccount());
+            //            session.setAttri
+
         }
         return result;
     }

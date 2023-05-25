@@ -6,13 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_info")
 public class Order {
     @Id
     @Column(name = "order_number")
     private int orderNumber;
-    @Column(name = "account")
-    private String account;
+    @Column(name = "account_buy")
+    private String accountBuy;
+    @Column(name = "account_sale")
+    private String accountSale;
     @Column(name = "order_info")
     private String orderInfo;
     @Column(name = "pay_way")
@@ -34,15 +36,27 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    public String getAccount() {
-        return account;
-    }
+   
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
+    public String getAccountBuy() {
+		return accountBuy;
+	}
 
-    public String getOrderInfo() {
+	public void setAccountBuy(String accountBuy) {
+		this.accountBuy = accountBuy;
+	}
+
+	
+
+	public String getAccountSale() {
+		return accountSale;
+	}
+
+	public void setAccountSale(String accountSale) {
+		this.accountSale = accountSale;
+	}
+
+	public String getOrderInfo() {
         return orderInfo;
     }
 
