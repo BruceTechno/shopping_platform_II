@@ -12,4 +12,6 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
 
 	public Commodity findAllByNumber(int number);
 
+	
+ 
 }

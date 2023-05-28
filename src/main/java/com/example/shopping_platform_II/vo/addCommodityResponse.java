@@ -8,7 +8,6 @@ public class addCommodityResponse {
 	
 	public addCommodityResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public addCommodityResponse(String message) {

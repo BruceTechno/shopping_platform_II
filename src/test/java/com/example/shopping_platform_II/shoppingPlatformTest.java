@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.example.shopping_platform_II.entity.Commodity;
 import com.example.shopping_platform_II.repository.CommodityDao;
 import com.example.shopping_platform_II.service.ifs.CommodityService;
+import com.example.shopping_platform_II.vo.CommodityResponse;
 import com.example.shopping_platform_II.vo.addCommodityResponse;
 
 @SpringBootTest(classes = ShoppingPlatformIiApplicationTests.class)
@@ -34,7 +35,7 @@ public class shoppingPlatformTest {
 	
 		list.add(goods);
 		
-		addCommodityResponse res = commodityService.listingProducts(list);
+		CommodityResponse res = commodityService.listingProducts(list);
 		
 		// íºê⁄égópDaoéwóﬂè„ôB
 //		commodityDao.save(goods);
