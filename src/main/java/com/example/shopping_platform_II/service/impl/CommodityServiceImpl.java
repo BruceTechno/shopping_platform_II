@@ -129,7 +129,9 @@ public class CommodityServiceImpl implements CommodityService{
 			return new noSoldCommodityResponse(res.getCode());
 		}
 		
-		// 輸入的商品編號為空直
+		//----------------------------------//
+		
+		// 商品編號為空值
 		if(number == 0) {
 			
 			return new noSoldCommodityResponse(RtnCode.NUMBER_EMPTY.getMessage());
