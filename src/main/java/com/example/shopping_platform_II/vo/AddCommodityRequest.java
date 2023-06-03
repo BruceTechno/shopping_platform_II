@@ -1,32 +1,18 @@
-package com.example.shopping_platform_II.entity;
+package com.example.shopping_platform_II.vo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "commodity")
-public class Commodity {
-    @Id
-    @Column(name = "number")
+public class AddCommodityRequest {
     private int number ;
-    @Column(name = "name")
     private String name;
-    @Column(name = "category")
     private String category;
-    @Column(name = "inventory")
     private int inventory;
-    @Column(name = "price")
     private int price;
-    @Column(name = "account_sell")
     private String accountSell;
-//========================================================================================================
+//==================================================================
 
-    public Commodity() {
+    public AddCommodityRequest() {
     }
-//========================================================================================================
+//==================================================================
 
     public int getNumber() {
         return number;
@@ -68,18 +54,11 @@ public class Commodity {
         this.price = price;
     }
 
-
-
-
     public String getAccountSell() {
-		return accountSell;
-	}
+        return accountSell;
+    }
 
-	public void setAccountSell(String accountSell) {
-		this.accountSell = accountSell;
-	}
-
-    
-
-   
+    public void setAccountSell(String accountSell) {
+        this.accountSell = accountSell;
+    }
 }

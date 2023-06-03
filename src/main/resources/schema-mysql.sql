@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS `commodity` (
   `category` VARCHAR(45) NULL,
   `inventory` INT NULL DEFAULT 0,
   `price` INT NULL DEFAULT 0,
-  `time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `account_sell` VARCHAR(45) NULL,
   PRIMARY KEY (`number`));
 
@@ -26,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `order_info` (
   `pay_way` INT NULL DEFAULT 0,
   `delivery_way` INT NULL DEFAULT 0,
   `status` INT NULL DEFAULT 0,
+    `time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`order_number`));
 
   CREATE TABLE IF NOT EXISTS `pay_way_code` (

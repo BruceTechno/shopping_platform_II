@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         }
         User result = userDao.findByAccountAndPwd(account, pwd);
         if (result == null) {
-            return new LoginResponse(RtnCode.NOT_FOUND.getMessage());
+            return new LoginResponse(RtnCode.DATA_ERROR.getMessage());
         }
         result.setActive(true);
         userDao.save(result);
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UpdateResponse updatePwd(UpdateRequest request) {//todo updatePwd要符合正規才能update done
-        String account = request.getAccount();
+        String account = request.getAccount();//todo user的修改資料區 都要改成帶session
         String pwd = request.getPwd();
         String patternPwd = "^(?=.+[\\p{Punct}])(?!.*[\\s\\t\\r\\n\\f])[\\p{Print}]{8,12}$";//8~12碼 至少包含一個特殊符號
 
@@ -132,5 +132,6 @@ public class UserServiceImpl implements UserService {
         }
         return new UpdateResponse(RtnCode.SUCCESSFUL.getMessage());
     }
+
 }
 

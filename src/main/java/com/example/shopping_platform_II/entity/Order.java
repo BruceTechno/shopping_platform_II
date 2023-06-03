@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "order_info")
@@ -23,6 +24,8 @@ public class Order {
     private int deliveryWay;
     @Column(name = "status")
     private int status;
+    @Column(name = "time")
+    private LocalDateTime time = LocalDateTime.now();
 //====================================================================================================
     public Order() {
     }
@@ -86,5 +89,13 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }

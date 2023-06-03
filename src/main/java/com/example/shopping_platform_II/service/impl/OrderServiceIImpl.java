@@ -48,7 +48,7 @@ public class OrderServiceIImpl implements OrderService {
 
 		// login check && account and password check
 		RtnCode res = checkLogin(accountBuy, pwd);
-		
+		//check login return的null 改成 200 Success ?
 		if (res != null) {
 			return new AddOrderResponse(res.getCode());
 		}
@@ -234,7 +234,7 @@ public class OrderServiceIImpl implements OrderService {
 			// plz login
 			return RtnCode.PLEASE_LOGIN_FIRST;
 		}
-
+		//todo 有session就代表有登入了 登入了帳密一定對 不用再check了吧?
 		Integer checkRes = userDao.checkAccountAndPwd(account, pwd) == null ? 0 : 1;
 		if ((int) checkRes == 0) {
 			return RtnCode.ACCOUNT_PWD_ERROR;
