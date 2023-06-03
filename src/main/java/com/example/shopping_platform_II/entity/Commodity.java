@@ -1,5 +1,7 @@
 package com.example.shopping_platform_II.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +9,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Table(name = "commodity")
 public class Commodity {
     @Id
@@ -26,7 +29,16 @@ public class Commodity {
 
     public Commodity() {
     }
-//========================================================================================================
+
+    public Commodity(int number, String name, String category, int inventory, int price, String accountSell) {
+        this.number = number;
+        this.name = name;
+        this.category = category;
+        this.inventory = inventory;
+        this.price = price;
+        this.accountSell = accountSell;
+    }
+    //========================================================================================================
 
     public int getNumber() {
         return number;

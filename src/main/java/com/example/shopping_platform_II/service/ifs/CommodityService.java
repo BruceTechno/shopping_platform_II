@@ -13,5 +13,8 @@ public interface CommodityService {
     public UpdateCommodityResponse updatePriceByNumber(HttpSession session , UpdateCommodityRequest request);
     public SearchCommodityResponse searchCommodityByName(HttpSession session,SearchCommodityRequest request);
     public SearchCommodityResponse searchCommodityByCategory(HttpSession session,SearchCommodityRequest request);
-    public SearchCommodityResponse distinctSearchCommodityByName (HttpSession session,SearchCommodityRequest request);
+    public DistinctSearchResponse distinctSearchCommodityByName (HttpSession session,SearchCommodityRequest request);
+    public DistinctSearchResponse distinctSearchCommodityByCategory (HttpSession session,SearchCommodityRequest request);
+    public DistinctSearchResponse distinctSearchCommodityByNameOrCategory (HttpSession session,SearchCommodityRequest request);
+
 }

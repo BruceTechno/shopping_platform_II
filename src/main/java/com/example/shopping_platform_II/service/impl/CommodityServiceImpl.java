@@ -195,23 +195,32 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public SearchCommodityResponse distinctSearchCommodityByName(HttpSession session, SearchCommodityRequest request) {
-//        String account = (String) session.getAttribute("account");
-//        String pwd = (String) session.getAttribute("pwd");
-//        String name = request.getName();
-//        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
-//            return new SearchCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
-//        }
-//        if (!StringUtils.hasText(name)){
-//            return new SearchCommodityResponse(RtnCode.CANNOT_EMPTY.getMessage());
-//        }
-//        List<Commodity> result = commodityDao.distinctSearchByName(name);
-//        if (CollectionUtils.isEmpty(result)){
-//            return new SearchCommodityResponse(RtnCode.NOT_FOUND.getMessage());
-//        }
+    public DistinctSearchResponse distinctSearchCommodityByName(HttpSession session, SearchCommodityRequest request) {
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+        String name = request.getName();
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new DistinctSearchResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(name)){
+            return new DistinctSearchResponse(RtnCode.CANNOT_EMPTY.getMessage());
+        }
+        List<DistinctSearchResponse> result = commodityDao.distinctSearchByName(name);
+        if (CollectionUtils.isEmpty(result)){
+            return new DistinctSearchResponse(RtnCode.NOT_FOUND.getMessage());
+        }
 
-//        return new SearchCommodityResponse(RtnCode.SUCCESSFUL.getMessage(),result);
-    return null;
+        return new DistinctSearchResponse(result,RtnCode.SUCCESSFUL.getMessage());
+    }
+
+    @Override
+    public DistinctSearchResponse distinctSearchCommodityByCategory(HttpSession session, SearchCommodityRequest request) {
+        return null;
+    }
+
+    @Override
+    public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(HttpSession session, SearchCommodityRequest request) {
+        return null;
     }
     //    public RtnCode checkLogin(String account , String pwd){
 //        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)){

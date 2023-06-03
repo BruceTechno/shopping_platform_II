@@ -17,7 +17,12 @@ public class PayWayCode {
 
     public PayWayCode() {
     }
-//============================================================================================
+
+    public PayWayCode(int code, String payWay) {
+        this.code = code;
+        this.payWay = payWay;
+    }
+    //============================================================================================
 
     public int getCode() {
         return code;

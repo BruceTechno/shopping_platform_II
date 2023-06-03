@@ -1,6 +1,7 @@
 package com.example.shopping_platform_II.repository;
 
 import com.example.shopping_platform_II.entity.Commodity;
+import com.example.shopping_platform_II.vo.DistinctSearchResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -51,12 +52,12 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
             @Param("inputNumber")int inputNumber);
     public List<Commodity> findByName (String name);
     public List<Commodity> findByCategory (String category);
-//    @Transactional
-//    @Modifying
-//    @Query("select new com.example.shopping_platform_II.vo.SearchCommodityResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
-//            " from Commodity c" +
-//            " where name like concat('%',:inputName,'%')")
-//    public List<Commodity> distinctSearchByName (@Param("inputName")String name);
+    @Transactional
+    @Modifying
+    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
+            " from Commodity c" +
+            " where c.name like concat('%',:inputName,'%')")
+    public List<DistinctSearchResponse> distinctSearchByName (@Param("inputName")String name);
 
 //    @Transactional
 //    @Modifying

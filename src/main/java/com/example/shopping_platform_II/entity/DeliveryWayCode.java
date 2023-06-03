@@ -17,7 +17,12 @@ public class DeliveryWayCode {
 
     public DeliveryWayCode() {
     }
-//================================================================================================
+
+    public DeliveryWayCode(int code, String deliveryWay) {
+        this.code = code;
+        this.deliveryWay = deliveryWay;
+    }
+    //================================================================================================
 
     public int getCode() {
         return code;

@@ -39,4 +39,8 @@ public class CommodityController {
     public UpdateCommodityResponse updatePriceByNumber(HttpSession session,@RequestBody UpdateCommodityRequest request) {
         return commodityService.updatePriceByNumber(session,request);
     }
+    @PostMapping(value = "distinctSearchCommodityByName")
+    public DistinctSearchResponse distinctSearchCommodityByName(HttpSession session,@RequestBody SearchCommodityRequest request){
+        return commodityService.distinctSearchCommodityByName(session,request);
+    }
 }
