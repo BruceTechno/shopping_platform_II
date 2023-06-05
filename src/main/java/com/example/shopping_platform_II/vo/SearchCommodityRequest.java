@@ -3,6 +3,7 @@ package com.example.shopping_platform_II.vo;
 public class SearchCommodityRequest {
     private String name;
     private String category;
+    private String keyword; //could be name or category
 //==
 
     public SearchCommodityRequest() {
@@ -23,5 +24,13 @@ public class SearchCommodityRequest {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 }

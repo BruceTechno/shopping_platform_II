@@ -59,6 +59,20 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
             " where c.name like concat('%',:inputName,'%')")
     public List<DistinctSearchResponse> distinctSearchByName (@Param("inputName")String name);
 
+    @Transactional
+    @Modifying
+    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
+            " from Commodity c" +
+            " where c.name like concat('%',:inputCategory,'%')")
+    public List<DistinctSearchResponse> distinctSearchByCategory (@Param("inputCategory")String category);
+
+    @Transactional
+    @Modifying
+    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
+            " from Commodity c" +
+            " where c.name like concat('%',:inputKeyword,'%')   ")
+    public List<DistinctSearchResponse> distinctSearchByNameOrCategory (@Param("inputKeyword")String nameOrCategory);
+
 //    @Transactional
 //    @Modifying
 //    @Query("select new com.example.subject_system.vo.StudentResponse(s.number,s.name,c.code,c.name,c.day,c.startTime,c.endTime,c.credit)" +

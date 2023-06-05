@@ -65,7 +65,7 @@ public interface UserDao extends JpaRepository<User,Integer> {
 
 
 //
-//public interface UserDao extends JpaRepository<User,Integer> {//todo Integer
+//public interface UserDao extends JpaRepository<User,Integer> {
 //
 //	public User findByAccountAndPwd(String account , String pwd);
 //

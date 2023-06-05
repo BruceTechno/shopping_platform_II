@@ -43,4 +43,14 @@ public class CommodityController {
     public DistinctSearchResponse distinctSearchCommodityByName(HttpSession session,@RequestBody SearchCommodityRequest request){
         return commodityService.distinctSearchCommodityByName(session,request);
     }
+    @PostMapping(value = "distinctSearchCommodityByCategory")
+    public DistinctSearchResponse distinctSearchCommodityByCategory(HttpSession session,@RequestBody SearchCommodityRequest request){
+        return commodityService.distinctSearchCommodityByCategory(session,request);
+    }
+    @PostMapping(value = "distinctSearchCommodityByNameOrCategory")
+    public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(HttpSession session,@RequestBody SearchCommodityRequest request){{
+        return commodityService.distinctSearchCommodityByNameOrCategory(session,request);
+    }}
+
+
 }

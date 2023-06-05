@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DeliveryWayCodeDao extends JpaRepository<DeliveryWayCode,Integer> {//todo Integer對嗎????
+public interface DeliveryWayCodeDao extends JpaRepository<DeliveryWayCode,Integer> {
 }

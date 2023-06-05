@@ -10,14 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
     @Override
-    public RegisterResponse register(RegisterRequest request) {//todo ++ account & pwd 正規 done
-        String account = request.getAccount();//todo 資料會一次新增兩筆 done
+    public RegisterResponse register(RegisterRequest request) {
+        String account = request.getAccount();
         String pwd = request.getPwd();
         String name = request.getName();
         String phone = request.getPhone();
@@ -69,18 +71,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UpdateResponse updatePwd(UpdateRequest request) {//todo updatePwd要符合正規才能update done
-        String account = request.getAccount();//todo user的修改資料區 都要改成帶session
-        String pwd = request.getPwd();
+    public UpdateResponse updatePwd(HttpSession session , UpdateRequest request) {
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+        String newPwd = request.getPwd();
         String patternPwd = "^(?=.+[\\p{Punct}])(?!.*[\\s\\t\\r\\n\\f])[\\p{Print}]{8,12}$";//8~12碼 至少包含一個特殊符號
 
+
         if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new UpdateResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(newPwd)) {
             return new UpdateResponse(RtnCode.CANNOT_EMPTY.getMessage());
         }
-        if(!pwd.matches(patternPwd)){
+        if(!newPwd.matches(patternPwd)){
             return new UpdateResponse(RtnCode.DATA_ERROR.getMessage());
         }
-        int result = userDao.updatePwdByAccount(pwd, account);
+        int result = userDao.updatePwdByAccount(newPwd, account);
         if (result == 0) {
             return new UpdateResponse(RtnCode.DATA_ERROR.getMessage());
         }
@@ -88,10 +95,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UpdateResponse updateName(UpdateRequest request) {//todo name符合正規才能update
-        String account = request.getAccount();
+    public UpdateResponse updateName(HttpSession session ,UpdateRequest request) {//todo name符合正規才能update 阿要符合啥規
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
         String name = request.getName();
-        if (!StringUtils.hasText(account) || !StringUtils.hasText(name)) {
+
+
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new UpdateResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(name)) {
             return new UpdateResponse(RtnCode.CANNOT_EMPTY.getMessage());
         }
         int result = userDao.updateNameByAccount(name, account);
@@ -102,10 +115,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UpdateResponse updateAddress(UpdateRequest request) {
-        String account = request.getAccount();
+    public UpdateResponse updateAddress(HttpSession session ,UpdateRequest request) {
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+
         String address = request.getAddress();
-        if (!StringUtils.hasText(account) || !StringUtils.hasText(address)) {
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new UpdateResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(address)) {
             return new UpdateResponse(RtnCode.CANNOT_EMPTY.getMessage());
         }
         int result = userDao.updateAddressByAccount(address, account);
@@ -116,11 +134,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UpdateResponse updatePhone(UpdateRequest request) {//todo phone符合正規才能update done
-        String account = request.getAccount();
+    public UpdateResponse updatePhone(HttpSession session ,UpdateRequest request) {//todo phone符合正規才能update done
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
         String phone = request.getPhone();
 
-        if (!StringUtils.hasText(account) || !StringUtils.hasText(phone)) {
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new UpdateResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(phone)) {
             return new UpdateResponse(RtnCode.CANNOT_EMPTY.getMessage());
         }
         if(!phone.matches("[0-9]{4}-[0-9]{6}")){
@@ -133,5 +155,17 @@ public class UserServiceImpl implements UserService {
         return new UpdateResponse(RtnCode.SUCCESSFUL.getMessage());
     }
 
+    @Override
+    public LoginResponse logout(HttpSession session ) {
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new LoginResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        session.removeAttribute("account");
+        session.removeAttribute("pwd");
+        return new LoginResponse(RtnCode.SUCCESSFUL.getMessage());
+    }
 }
 

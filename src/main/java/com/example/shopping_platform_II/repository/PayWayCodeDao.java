@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PayWayCodeDao extends JpaRepository<PayWayCode,Integer> {//todo Integer對嗎??
+public interface PayWayCodeDao extends JpaRepository<PayWayCode,Integer> {
 }

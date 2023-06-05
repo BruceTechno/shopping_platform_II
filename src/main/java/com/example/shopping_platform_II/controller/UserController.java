@@ -45,19 +45,24 @@ public class UserController {
         return result;
     }
     @PostMapping(value = "update Pwd")
-    public UpdateResponse updatePwd(@RequestBody  UpdateRequest request){
-        return userService.updatePwd(request);
+    public UpdateResponse updatePwd(@RequestBody  UpdateRequest request , HttpSession session){
+        return userService.updatePwd(session,request);
     }
     @PostMapping(value = "update name")
-    public UpdateResponse updateName(@RequestBody UpdateRequest request){
-        return userService.updateName(request);
+    public UpdateResponse updateName(@RequestBody UpdateRequest request,HttpSession session){
+        return userService.updateName(session,request);
     }
     @PostMapping(value = "update address")
-    public UpdateResponse updateAddress(@RequestBody UpdateRequest request){
-        return userService.updateAddress(request);
+    public UpdateResponse updateAddress(HttpSession session,@RequestBody UpdateRequest request){
+        return userService.updateAddress(session,request);
     }
     @PostMapping(value = "update phone")
-    public UpdateResponse updatePhone(@RequestBody UpdateRequest request){
-        return userService.updatePhone(request);
+    public UpdateResponse updatePhone(HttpSession session ,@RequestBody UpdateRequest request){
+        return userService.updatePhone(session,request);
+    }
+    @PostMapping(value = "log out")
+    public LoginResponse logOut(HttpSession session ){
+
+        return userService.logout(session);
     }
 }

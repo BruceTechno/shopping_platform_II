@@ -41,13 +41,13 @@ public class CommodityServiceImpl implements CommodityService {
             return new AddCommodityResponse(RtnCode.DATA_ERROR.getMessage());
         }
         if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
-            return new AddCommodityResponse("Plz login");
+            return new AddCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
         }
         int result = commodityDao.addCommodityWhereNotExists(number, name, category, inventory, price, accountSell, number);
         if (result == 0) {
             return new AddCommodityResponse(RtnCode.DATA_DUPLICATE.getMessage());
         }
-        //todo 賣家(account_sell)用session
+
         return new AddCommodityResponse(RtnCode.SUCCESSFUL.getMessage());
     }
 
@@ -70,7 +70,7 @@ public class CommodityServiceImpl implements CommodityService {
         if (!optionalCommodity.get().getAccountSell().equals(account) ){
             return new DeleteCommodityResponse("不能刪別人的");
         }
-        //todo 判斷是自己的帳號賣的東西才能刪除 done
+
         //todo 管理員不用判斷就能刪除
         //todo 多一個status 判斷 是不是被下訂了 被下訂就不能刪除?
         commodityDao.deleteById(commodityNumber);
@@ -209,18 +209,43 @@ public class CommodityServiceImpl implements CommodityService {
         if (CollectionUtils.isEmpty(result)){
             return new DistinctSearchResponse(RtnCode.NOT_FOUND.getMessage());
         }
-
         return new DistinctSearchResponse(result,RtnCode.SUCCESSFUL.getMessage());
     }
 
     @Override
     public DistinctSearchResponse distinctSearchCommodityByCategory(HttpSession session, SearchCommodityRequest request) {
-        return null;
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+        String category = request.getCategory();
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new DistinctSearchResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(category)){
+            return new DistinctSearchResponse(RtnCode.CANNOT_EMPTY.getMessage());
+        }
+        List<DistinctSearchResponse> result = commodityDao.distinctSearchByName(category);
+        if (CollectionUtils.isEmpty(result)){
+            return new DistinctSearchResponse(RtnCode.NOT_FOUND.getMessage());
+        }
+        return new DistinctSearchResponse(result,RtnCode.SUCCESSFUL.getMessage());
     }
 
     @Override
     public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(HttpSession session, SearchCommodityRequest request) {
-        return null;
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+        String keyword = request.getKeyword();
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new DistinctSearchResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (!StringUtils.hasText(keyword)){
+            return new DistinctSearchResponse(RtnCode.CANNOT_EMPTY.getMessage());
+        }
+        List<DistinctSearchResponse> result = commodityDao.distinctSearchByName(keyword);
+        if (CollectionUtils.isEmpty(result)){
+            return new DistinctSearchResponse(RtnCode.NOT_FOUND.getMessage());
+        }
+        return new DistinctSearchResponse(result,RtnCode.SUCCESSFUL.getMessage());
     }
     //    public RtnCode checkLogin(String account , String pwd){
 //        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)){

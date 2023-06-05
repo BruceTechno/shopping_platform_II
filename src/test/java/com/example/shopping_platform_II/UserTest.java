@@ -13,10 +13,10 @@ private UserService userService;
 
 	@Test
 	void updateTest() {
-		String account = "Nancy1234";
-		String pwd ="NANCY123@";
-		UpdateRequest request = new UpdateRequest(account,pwd);
-	userService.updatePwd(request);
+//		String account = "Nancy1234";
+//		String pwd ="NANCY123@";
+//		UpdateRequest request = new UpdateRequest(account,pwd);
+//	userService.updatePwd(request);
 	}
 
 }
