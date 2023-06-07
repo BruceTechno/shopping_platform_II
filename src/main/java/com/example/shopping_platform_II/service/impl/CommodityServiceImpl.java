@@ -25,7 +25,7 @@ public class CommodityServiceImpl implements CommodityService{
 	@Autowired
 	private CommodityDao commodityDao;
 	
-	@Autowired
+//	@Autowired
 //	private UserDao userDao;
 	
 	/*
@@ -99,10 +99,10 @@ public class CommodityServiceImpl implements CommodityService{
 			/*
 			 *  檢查現在商品架上是否有重複的編號
 			 */
-			Commodity resNum = commodityDao.findByNumber(item.getNumber());
+			 Optional<Commodity> resNum = commodityDao.findById(item.getNumber());
 			
 			// 有結果: 找到重複編號
-			if(resNum.getNumber() > 0) {
+			if(resNum.isPresent() == true) {
 				
 				// 報錯(編號重複)
 				return new addCommodityResponse(RtnCode.NUMBER_ERROR.getMessage());
@@ -159,7 +159,7 @@ public class CommodityServiceImpl implements CommodityService{
 		 */
 		
 		// 去資料庫找對應的編號
-		Commodity resNum = commodityDao.findByNumber(number);
+		Optional<Commodity> resNum = commodityDao.findById(number);
 
 		// 找不到對應的產品編號
 		if(resNum == null) {
@@ -167,7 +167,7 @@ public class CommodityServiceImpl implements CommodityService{
 			return new deleteCommodityResponse(RtnCode.NO_NUM_GOODS_LIST.getMessage());
 		}
 		
-		if(!resNum.getAccountSell().equals(account)) {
+		if(!resNum.get().getAccountSell().equals(account)) {
 			
 			return new deleteCommodityResponse(RtnCode.DELETE_OTHER_USER.getMessage());
 
