@@ -1,11 +1,15 @@
 package com.example.shopping_platform_II.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Table(name = "commodity")
 public class Commodity {
     @Id
@@ -19,38 +23,28 @@ public class Commodity {
     private int inventory;
     @Column(name = "price")
     private int price;
-    @Column(name = "status")
-    private int status;
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "account_sell")
+    private String accountSell;
 //========================================================================================================
 
     public Commodity() {
     }
 
-//========================================================================================================
-
-    public Commodity(int number, String name, String category, int inventory, int price, int status, int userId) {
-		super();
-		this.number = number;
-		this.name = name;
-		this.category = category;
-		this.inventory = inventory;
-		this.price = price;
-		this.status = status;
-		this.userId = userId;
-	}
-    
-    
-//========================================================================================================
+    public Commodity(int number, String name, String category, int inventory, int price, String accountSell) {
+        this.number = number;
+        this.name = name;
+        this.category = category;
+        this.inventory = inventory;
+        this.price = price;
+        this.accountSell = accountSell;
+    }
+    //========================================================================================================
 
     public int getNumber() {
         return number;
     }
 
-    
-
-	public void setNumber(int number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -86,19 +80,18 @@ public class Commodity {
         this.price = price;
     }
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+    public String getAccountSell() {
+		return accountSell;
+	}
+
+	public void setAccountSell(String accountSell) {
+		this.accountSell = accountSell;
+	}
+
+    
+
+   
 }

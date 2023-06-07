@@ -10,9 +10,9 @@ public enum RtnCode {
 	NUMBER_ERROR("405", "Commodity NumberÅ@Overlap!!"),
 	PLEASE_LOGIN("402", "Please Login first!!"),
 	ACCOUNT_PWD_ERROR("403", "The account and pwd is wrong!!"),
-	
+
 	CAN_NOT_DELETE("407", "Can't delete the number!!"),
-	
+	DELETE_OTHER_USER("408", "Can't delete other user account!!"),
 	NUMBER_EMPTY("406", "Insert Commodity NumberÅ@Empty!!");
 	
 

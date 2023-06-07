@@ -1,16 +1,16 @@
 package com.example.shopping_platform_II.vo;
 
-public class noSoldCommodityResponse {
+public class deleteCommodityResponse {
 	
 	private String message;
 	
 	
 
-	public noSoldCommodityResponse() {
+	public deleteCommodityResponse() {
 		super();
 	}
 
-	public noSoldCommodityResponse(String message) {
+	public deleteCommodityResponse(String message) {
 		super();
 		this.message = message;
 	}

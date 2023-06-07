@@ -1,17 +1,17 @@
 package com.example.shopping_platform_II.vo;
 
-public class noSoldCommodityRequest {
+public class deleteCommodityRequest {
 	
 	private int number;
 
 	
-	public noSoldCommodityRequest() {
+	public deleteCommodityRequest() {
 		super();
 	}
 	
 	
 
-	public noSoldCommodityRequest(int number) {
+	public deleteCommodityRequest(int number) {
 		super();
 		this.number = number;
 	}

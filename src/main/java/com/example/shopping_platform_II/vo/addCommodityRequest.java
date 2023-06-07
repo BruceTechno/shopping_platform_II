@@ -8,19 +8,12 @@ public class addCommodityRequest {
 	
 	private List<Commodity> reqCommodity;
 	
-	private int number;
-	
-	private String name;
-	
-	private String category;
-	
-	private int inventory;
-	
-	private int price;
-	
-	private int status;
-	
-	private int userId;
+	private int number ;
+    private String name;
+    private String category;
+    private int inventory;
+    private int price;
+    private String accountSell;
 	
 	
 
@@ -28,19 +21,21 @@ public class addCommodityRequest {
 		super();
 	}
 
-	public addCommodityRequest(int number, String name, String category, int inventory, int price, int status,
-			int userId) {
+	
+	
+
+	public addCommodityRequest(int number, String name, String category, int inventory, int price, String accountSell) {
 		super();
 		this.number = number;
 		this.name = name;
 		this.category = category;
 		this.inventory = inventory;
 		this.price = price;
-		this.status = status;
-		this.userId = userId;
+		this.accountSell = accountSell;
 	}
-	
-	
+
+
+
 
 	public addCommodityRequest(List<Commodity> reqCommodity) {
 		super();
@@ -87,20 +82,16 @@ public class addCommodityRequest {
 		this.price = price;
 	}
 
-	public int getStatus() {
-		return status;
+	
+	
+
+
+	public String getAccountSell() {
+		return accountSell;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setAccountSell(String accountSell) {
+		this.accountSell = accountSell;
 	}
 
 	public List<Commodity> getReqCommodity() {

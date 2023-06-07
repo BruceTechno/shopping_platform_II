@@ -4,7 +4,7 @@ public class CommodityResponse {
 
 	private addCommodityResponse addProduct;
 	
-	private noSoldCommodityResponse noSoldProduct;
+	private deleteCommodityResponse noSoldProduct;
 
 	private String message;
 	
@@ -32,7 +32,7 @@ public class CommodityResponse {
 
 	
 	
-	public CommodityResponse(noSoldCommodityResponse noSoldProduct) {
+	public CommodityResponse(deleteCommodityResponse noSoldProduct) {
 		super();
 		this.noSoldProduct = noSoldProduct;
 	}
@@ -47,11 +47,11 @@ public class CommodityResponse {
 		this.addProduct = addProduct;
 	}
 
-	public noSoldCommodityResponse getNoSoldProduct() {
+	public deleteCommodityResponse getNoSoldProduct() {
 		return noSoldProduct;
 	}
 
-	public void setNoSoldProduct(noSoldCommodityResponse noSoldProduct) {
+	public void setNoSoldProduct(deleteCommodityResponse noSoldProduct) {
 		this.noSoldProduct = noSoldProduct;
 	}
 

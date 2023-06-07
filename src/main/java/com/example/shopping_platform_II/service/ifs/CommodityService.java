@@ -7,11 +7,12 @@ import javax.servlet.http.HttpSession;
 import com.example.shopping_platform_II.entity.Commodity;
 import com.example.shopping_platform_II.vo.CommodityResponse;
 import com.example.shopping_platform_II.vo.addCommodityResponse;
-import com.example.shopping_platform_II.vo.noSoldCommodityResponse;
+import com.example.shopping_platform_II.vo.deleteCommodityResponse;
 
 public interface CommodityService {
-	// ’ åj –§áù æ”ä›” İ”ä›”Numer“™ŠŒ
+	// ’ åj –§áù æ”ä›” Ä”ä›”Numer“™ŠŒ
 	public addCommodityResponse listingProducts(HttpSession httpSession, List<Commodity> goods);
 	
-	public noSoldCommodityResponse noSoldProducts(HttpSession httpSession, int number);
+	// method: ‰º‰Ë¤•i(™ˆœšd•M)
+	public deleteCommodityResponse noSoldProducts(HttpSession httpSession, int number);
 }

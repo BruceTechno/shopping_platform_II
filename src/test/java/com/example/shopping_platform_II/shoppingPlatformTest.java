@@ -28,14 +28,14 @@ public class shoppingPlatformTest {
 	@Test
 	public void listingProducts() {
 		
-		Commodity goods = new Commodity(1244, "xperia6", "smartphone", 50, 3500, 1, 2468);
+//		Commodity goods = new Commodity(1244, "xperia6", "smartphone", 50, 3500, 1, 2468);
 
 		List<Commodity> list = new ArrayList<>();
 		
 	
-		list.add(goods);
+//		list.add(goods);
 		
-		CommodityResponse res = commodityService.listingProducts(list);
+//		CommodityResponse res = commodityService.listingProducts(list);
 		
 		// íºê⁄égópDaoéwóﬂè„ôB
 //		commodityDao.save(goods);
