@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GetShoppingCarResponse {
 private String message;
-private List<ShoppingCar> shoppingCarList;
+private List<GetCommodityInfo> getCommodityInfoList;
 
 //===
 
@@ -17,11 +17,13 @@ private List<ShoppingCar> shoppingCarList;
         this.message = message;
     }
 
-    public GetShoppingCarResponse(String message, List<ShoppingCar> shoppingCarList) {
+
+
+    public GetShoppingCarResponse(String message, List<GetCommodityInfo> getCommodityInfoList) {
         this.message = message;
-        this.shoppingCarList = shoppingCarList;
+        this.getCommodityInfoList = getCommodityInfoList;
     }
-//==
+    //==
 
     public String getMessage() {
         return message;
@@ -31,11 +33,13 @@ private List<ShoppingCar> shoppingCarList;
         this.message = message;
     }
 
-    public List<ShoppingCar> getShoppingCarList() {
-        return shoppingCarList;
+
+
+    public List<GetCommodityInfo> getGetCommodityInfoList() {
+        return getCommodityInfoList;
     }
 
-    public void setShoppingCarList(List<ShoppingCar> shoppingCarList) {
-        this.shoppingCarList = shoppingCarList;
+    public void setGetCommodityInfoList(List<GetCommodityInfo> getCommodityInfoList) {
+        this.getCommodityInfoList = getCommodityInfoList;
     }
 }

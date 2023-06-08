@@ -15,7 +15,7 @@ public class ShoppingCarController {
     private ShoppingCarService shoppingCarService;
 
     @PostMapping(value = "get_shopping_car_info")
-    public GetShoppingCarResponse getShoppingCar(HttpSession session){
-        return shoppingCarService.getShoppingCar(session);
+    public GetShoppingCarResponse getShoppingCarInfo(HttpSession session){
+        return shoppingCarService.getShoppingCarInfo(session);
     }
 }
