@@ -40,6 +40,7 @@ public class Commodity {
     }
     //========================================================================================================
 
+
     public int getNumber() {
         return number;
     }
@@ -80,18 +81,11 @@ public class Commodity {
         this.price = price;
     }
 
-
-
-
     public String getAccountSell() {
-		return accountSell;
-	}
+        return accountSell;
+    }
 
-	public void setAccountSell(String accountSell) {
-		this.accountSell = accountSell;
-	}
-
-    
-
-   
+    public void setAccountSell(String accountSell) {
+        this.accountSell = accountSell;
+    }
 }

@@ -98,7 +98,7 @@ public class OrderServiceIImpl implements OrderService {
 			}
 
 			// change map to string
-			String orderInfoStr = mapToString(orderInfos);
+			String orderInfoStr = mapToString(newOrderInfo);
 
 			boolean checkOrderNumber = true;
 			
