@@ -3,12 +3,14 @@ package com.example.shopping_platform_II.controller;
 import com.example.shopping_platform_II.service.ifs.CommodityService;
 import com.example.shopping_platform_II.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
+@CrossOrigin
 @RestController
 public class CommodityController {
     @Autowired
@@ -51,6 +53,11 @@ public class CommodityController {
     public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(HttpSession session,@RequestBody SearchCommodityRequest request){{
         return commodityService.distinctSearchCommodityByNameOrCategory(session,request);
     }}
+    
+    @PostMapping(value = "search_com_by_name")
+    public SearchCommodityResponse searchCommodityByName(@RequestBody SearchCommodityRequest request) {
+    	return commodityService.searchCommodityByName(request);
+    }
 
 
 }
