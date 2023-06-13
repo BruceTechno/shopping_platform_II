@@ -16,7 +16,7 @@ public class CommodityController {
 
     @PostMapping(value = "add_commodity")
     public AddCommodityResponse addCommodity(HttpSession session, @RequestBody AddCommodityRequest request) {
-        return commodityService.addCommodity(session,request);
+        return commodityService.addCommodity(session, request);
     }
 
     @PostMapping(value = "delete_commodity")

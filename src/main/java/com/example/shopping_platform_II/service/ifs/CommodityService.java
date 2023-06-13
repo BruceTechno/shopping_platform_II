@@ -1,6 +1,9 @@
 package com.example.shopping_platform_II.service.ifs;
 
+import com.example.shopping_platform_II.entity.Commodity;
 import com.example.shopping_platform_II.vo.*;
+
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 

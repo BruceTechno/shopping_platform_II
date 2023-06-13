@@ -24,7 +24,14 @@ public class UserServiceImpl implements UserService {
         String name = request.getName();
         String phone = request.getPhone();
         String address = request.getAddress();
-        String patternPwd = "^(?=.+[\\p{Punct}])(?!.*[\\s\\t\\r\\n\\f])[\\p{Print}]{8,12}$";//8~12碼 至少包含一個特殊符號
+
+        /*
+         * 	密碼條件:
+         * 	密碼必須包含至少一個標點符號。
+         *	密碼不能包含任何空格字符。
+         *	密碼的長度必須在 8 到 12 個可打印字符之間
+         */
+        String patternPwd = "^(?=.+[\\p{Punct}])(?!.*[\\s\\t\\r\\n\\f])[\\p{Print}]{8,12}$";//密碼例:Abcd123!, Test@12345...
         if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd) || !StringUtils.hasText(name) ||
                 !StringUtils.hasText(phone) || !StringUtils.hasText(address)) {
             return new RegisterResponse(RtnCode.DATA_ERROR.getMessage());
