@@ -173,13 +173,10 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public SearchCommodityResponse searchCommodityByName(HttpSession session, SearchCommodityRequest request) {
-        String account = (String) session.getAttribute("account");
-        String pwd = (String) session.getAttribute("pwd");
+    public SearchCommodityResponse searchCommodityByName(SearchCommodityRequest request) {
+        
         String name = request.getName();
-        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
-            return new SearchCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
-        }
+        
         if (!StringUtils.hasText(name)){
             return new SearchCommodityResponse(RtnCode.CANNOT_EMPTY.getMessage());
         }

@@ -13,5 +13,5 @@ public interface UserService {
     public UpdateResponse updateAddress(HttpSession session ,UpdateRequest request);
     public UpdateResponse updatePhone(HttpSession session ,UpdateRequest request);
     public LoginResponse logout (HttpSession session);
-
+    public GetUserResponse getUserInfoGetUserResponse (HttpSession session);
 }

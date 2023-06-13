@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+
 @RestController
 @CrossOrigin
 public class CommodityController {
@@ -57,12 +58,14 @@ public class CommodityController {
         return commodityService.distinctSearchCommodityByCategory(session, request);
     }
 
-    @PostMapping(value = "distinctSearchCommodityByNameOrCategory")
-    public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(HttpSession session, @RequestBody SearchCommodityRequest request) {
-            return commodityService.distinctSearchCommodityByNameOrCategory(session, request);
-    }
     @PostMapping(value = "add_image")
     public AddCommodityResponse addImage(HttpSession session,@RequestBody AddImageRequest request) throws IOException{
         return commodityService.addImage(session,request);
     }
+
+    @PostMapping(value = "search_com_by_name")
+    public SearchCommodityResponse searchCommodityByName(@RequestBody SearchCommodityRequest request) {
+    	return commodityService.searchCommodityByName(request);
+    }
+
 }
