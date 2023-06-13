@@ -66,4 +66,8 @@ public class UserController {
 
         return userService.logout(session);
     }
+    @PostMapping(value = "update_session_interval")
+    public void updateSessionInterval(HttpSession session){
+        session.setMaxInactiveInterval(1800);
+    }
 }

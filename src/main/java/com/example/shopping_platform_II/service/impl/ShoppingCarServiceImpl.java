@@ -31,4 +31,5 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
 
         return new GetShoppingCarResponse(RtnCode.SUCCESSFUL.getMessage(), result2);
     }
+
 }

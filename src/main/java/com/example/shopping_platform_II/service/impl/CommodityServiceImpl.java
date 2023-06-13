@@ -13,9 +13,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
-
+import java.sql.Connection;
 @Service
 public class CommodityServiceImpl implements CommodityService {
 
@@ -24,15 +26,22 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private UserDao userDao;
 
+
     @Override
     public AddCommodityResponse addCommodity(HttpSession session, AddCommodityRequest request) {
+
+//========
         int number = (int) (Math.random() * 10000 + 1);
         String name = request.getName();
         String category = request.getCategory();
         int inventory = request.getInventory();
         int price = request.getPrice();
         String accountSell = (String) session.getAttribute("account");
+        String img = request.getImg();
 
+        if (!StringUtils.hasText(img)){
+            return new AddCommodityResponse("55688");
+        }
         String account = (String) session.getAttribute("account");
         String pwd = (String) session.getAttribute("pwd");
 
@@ -43,7 +52,7 @@ public class CommodityServiceImpl implements CommodityService {
         if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
             return new AddCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
         }
-        int result = commodityDao.addCommodityWhereNotExists(number, name, category, inventory, price, accountSell, number);
+        int result = commodityDao.addCommodityWhereNotExists(number, name, category, inventory, price, accountSell, number,img);
         if (result == 0) {
             return new AddCommodityResponse(RtnCode.DATA_DUPLICATE.getMessage());
         }

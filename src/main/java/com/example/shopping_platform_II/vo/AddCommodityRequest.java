@@ -2,25 +2,19 @@ package com.example.shopping_platform_II.vo;
 
 
 public class AddCommodityRequest {
-    private int number ;
     private String name;
     private String category;
     private int inventory;
     private int price;
     private String accountSell;
+    private String img;
 //==================================================================
 
     public AddCommodityRequest() {
     }
 //==================================================================
 
-    public int getNumber() {
-        return number;
-    }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
 
     public String getName() {
         return name;
@@ -60,5 +54,13 @@ public class AddCommodityRequest {
 
     public void setAccountSell(String accountSell) {
         this.accountSell = accountSell;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

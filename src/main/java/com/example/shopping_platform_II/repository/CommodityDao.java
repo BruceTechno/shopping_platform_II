@@ -15,8 +15,8 @@ import java.util.List;
 public interface CommodityDao extends JpaRepository<Commodity,Integer> {
     @Transactional
     @Modifying
-    @Query(value = "insert into commodity(number,name,category,inventory,price,account_sell)" +
-            " select :inputNumber, :inputName, :inputCategory, :inputInventory, :inputPrice, :inputAccountSell" +
+    @Query(value = "insert into commodity(number,name,category,inventory,price,account_sell,img)" +
+            " select :inputNumber, :inputName, :inputCategory, :inputInventory, :inputPrice, :inputAccountSell, :inputImg" +
             " where not exists (select 1 from commodity where number = :inputNumber)" ,nativeQuery = true)
     public int addCommodityWhereNotExists(
             @Param("inputNumber")int number,
@@ -25,7 +25,9 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
             @Param("inputInventory")int inputInventory,
             @Param("inputPrice")int inputPrice,
             @Param("inputAccountSell")String inputAccountSell,
-            @Param("inputNumber")int inputNumber);
+            @Param("inputNumber")int inputNumber,
+            @Param("inputImg")String inputImg);
+
     @Transactional
     @Modifying
     @Query(value = "update Commodity c set c.name = :newName where c.number = :inputNumber")

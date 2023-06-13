@@ -9,6 +9,7 @@ public class GetCommodityInfo {
     private int inventory;
     private int price;
     private String accountSell;
+
 //==
 
     public GetCommodityInfo() {
@@ -24,7 +25,8 @@ public class GetCommodityInfo {
         this.price = price;
         this.accountSell = accountSell;
     }
-//==
+
+    //==
 
 
     public String getUserId() {
@@ -90,4 +92,5 @@ public class GetCommodityInfo {
     public void setAccountSell(String accountSell) {
         this.accountSell = accountSell;
     }
+
 }
