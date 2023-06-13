@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.example.shopping_platform_II.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.shopping_platform_II.service.ifs.OrderService;
 
 @RestController
+@CrossOrigin
 public class OrderController {
 
     @Autowired

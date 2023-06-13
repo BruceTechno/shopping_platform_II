@@ -3,9 +3,11 @@ package com.example.shopping_platform_II.service.ifs;
 import com.example.shopping_platform_II.vo.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 public interface CommodityService {
     public AddCommodityResponse addCommodity (HttpSession session, AddCommodityRequest request);
+    public AddCommodityResponse addImage (HttpSession session, AddImageRequest request) throws IOException;
     public DeleteCommodityResponse deleteCommodity(HttpSession session , DeleteCommodityRequest request);
     public UpdateCommodityResponse updateNameByNumber(HttpSession session , UpdateCommodityRequest request);
     public UpdateCommodityResponse updateCategoryByNumber(HttpSession session , UpdateCommodityRequest request);

@@ -7,7 +7,7 @@ public class AddCommodityRequest {
     private int inventory;
     private int price;
     private String accountSell;
-    private String img;
+
 //==================================================================
 
     public AddCommodityRequest() {
@@ -56,11 +56,5 @@ public class AddCommodityRequest {
         this.accountSell = accountSell;
     }
 
-    public String getImg() {
-        return img;
-    }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
 }

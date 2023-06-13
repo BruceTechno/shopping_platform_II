@@ -49,9 +49,6 @@ public class CommodityServiceImpl implements CommodityService {
         int price = request.getPrice();
         String accountSell = (String) session.getAttribute("account");
 
-
-
-
         String account = (String) session.getAttribute("account");
         String pwd = (String) session.getAttribute("pwd");
 
@@ -266,15 +263,34 @@ public class CommodityServiceImpl implements CommodityService {
         }
         return new DistinctSearchResponse(result,RtnCode.SUCCESSFUL.getMessage());
     }
-    //    public RtnCode checkLogin(String account , String pwd){
-//        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)){
-//            return RtnCode.PLEASE_LOGIN_FIRST;
-//        }
-//        User result = userDao.findByAccountAndPwd(account, pwd);
-//        if (result == null){
-//            return RtnCode.DATA_ERROR;
-//        }
-//        return RtnCode.SUCCESSFUL;
-//    }
 
+    @Override
+    public AddCommodityResponse addImage(HttpSession session, AddImageRequest request) throws IOException {
+        String account = (String) session.getAttribute("account");
+        String pwd = (String) session.getAttribute("pwd");
+        int commodityNumber = request.getCommodityNumber();
+        String img = request.getImg();
+        if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+            return new AddCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+        }
+        if (commodityNumber < 0 ){
+            return new AddCommodityResponse(RtnCode.DATA_ERROR.getMessage());
+        }
+        //抓到上傳的圖片的絕對路徑
+        String imgFilePath = Base64ToImg(img);
+        //以對應的商品代碼 抓到商品欄位以存取 imgFilePath進去
+        Optional<Commodity> result = commodityDao.findById(commodityNumber);
+        if (!result.isPresent()){
+            return new AddCommodityResponse(RtnCode.NOT_FOUND.getMessage());//沒有這個商品
+        }
+        if (!result.get().getAccountSell().equals(account)){
+            return new AddCommodityResponse(RtnCode.DATA_ERROR.getMessage());
+        }
+        int updateResult = commodityDao.updateImgPathByNumber(imgFilePath, commodityNumber);
+
+        if (updateResult == 0){
+            return new AddCommodityResponse(RtnCode.DATA_ERROR.getMessage());
+        }
+        return new AddCommodityResponse(RtnCode.SUCCESSFUL.getMessage());
+    }
 }

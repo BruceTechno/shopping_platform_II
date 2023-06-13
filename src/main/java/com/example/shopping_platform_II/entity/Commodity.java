@@ -25,6 +25,9 @@ public class Commodity {
     private int price;
     @Column(name = "account_sell")
     private String accountSell;
+
+    @Column(name = "img_path")
+    private String imgPath;
 //========================================================================================================
 
     public Commodity() {
@@ -37,6 +40,10 @@ public class Commodity {
         this.inventory = inventory;
         this.price = price;
         this.accountSell = accountSell;
+    }
+
+    public Commodity(String imgPath) {
+        this.imgPath = imgPath;
     }
     //========================================================================================================
 
@@ -87,5 +94,13 @@ public class Commodity {
 
     public void setAccountSell(String accountSell) {
         this.accountSell = accountSell;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }
