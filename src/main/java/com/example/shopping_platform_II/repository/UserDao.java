@@ -63,6 +63,13 @@ public interface UserDao extends JpaRepository<User,Integer> {
 			@Param("account")String account,
 			@Param("pwd")String pwd);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update User u set u.userImg = :newUserImg where u.account = :newAccount")
+    public int updateUserImgByAccount(
+            @Param("newUserImg")String newUserImg,
+            @Param("newAccount")String inputAccount);
+
 
 //
 //public interface UserDao extends JpaRepository<User,Integer> {

@@ -5,12 +5,21 @@ public class AddImageRequest {
 
     private int commodityNumber ;
 
-    private String message ;
+    private String account;
+
  //==
 
     public AddImageRequest() {
     }
 //==
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
     public String getImg() {
         return img;
@@ -18,14 +27,6 @@ public class AddImageRequest {
 
     public void setImg(String img) {
         this.img = img;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public int getCommodityNumber() {

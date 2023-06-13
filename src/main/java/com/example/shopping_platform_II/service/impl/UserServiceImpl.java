@@ -1,6 +1,7 @@
 package com.example.shopping_platform_II.service.impl;
 
 import com.example.shopping_platform_II.constants.RtnCode;
+import com.example.shopping_platform_II.entity.Commodity;
 import com.example.shopping_platform_II.entity.User;
 import com.example.shopping_platform_II.repository.UserDao;
 import com.example.shopping_platform_II.service.ifs.UserService;
@@ -11,6 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Optional;
+
+import static com.example.shopping_platform_II.Util.Base64ToImage.Base64ToImg;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -181,5 +186,29 @@ public class UserServiceImpl implements UserService {
 		
 		
 		return new GetUserResponse(RtnCode.SUCCESSFUL.getMessage(), res);
+	}
+
+	@Override
+	public RegisterResponse addUserImg(HttpSession session, AddImageRequest request) throws IOException {
+		String account = (String) session.getAttribute("account");
+		String pwd = (String) session.getAttribute("pwd");
+
+		String img = request.getImg();
+		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+			return new RegisterResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+		}
+		if (!StringUtils.hasText(img)){
+			return new RegisterResponse(RtnCode.CANNOT_EMPTY.getMessage());//檔案上傳失敗 之類的
+		}
+		//抓到上傳的圖片的 uuid  => uuid直接會是圖片的檔名
+		String imgFilePath = Base64ToImg(img);
+
+		int updateResult = userDao.updateUserImgByAccount(imgFilePath,account);
+
+		if (updateResult == 0) {
+			return new RegisterResponse(RtnCode.DATA_ERROR.getMessage());
+		}
+		return new RegisterResponse(RtnCode.SUCCESSFUL.getMessage());
+
 	}
 }

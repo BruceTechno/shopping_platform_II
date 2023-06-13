@@ -25,7 +25,8 @@ public class Commodity {
     private int price;
     @Column(name = "account_sell")
     private String accountSell;
-
+    @Column(name = "introduction")
+    private String introduction;
     @Column(name = "img_path")
     private String imgPath;
 //========================================================================================================
@@ -102,5 +103,13 @@ public class Commodity {
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 }

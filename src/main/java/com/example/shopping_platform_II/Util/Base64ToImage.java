@@ -14,9 +14,10 @@ import java.util.UUID;
 
 public class Base64ToImage {
     public static String Base64ToImg(String imgBase64) throws FileNotFoundException, IOException {
-        List<String> imgFilePathList = new ArrayList<>();
+        UUID uuid = UUID.randomUUID();
+
         // 寫入到 txt 檔案
-        try {                                                               //txt檔案生成位置
+        try {                                                               //txt檔案生成位置 =>生在Java
             String filePath = "C:\\Users\\Yuzhe\\IdeaProjects\\shopping_platform_II\\src\\main\\resources\\Img\\base64.txt";
             FileWriter fileWriter = new FileWriter(filePath);
             fileWriter.write(imgBase64);
@@ -25,24 +26,22 @@ public class Base64ToImage {
             e.printStackTrace();
         }
 
-        // 將 txt 檔案讀取並轉換成圖片
+        // 將 txt 檔案讀取並轉換成圖片                                     路徑同上喔 =>生在Java
         FileInputStream fis = new FileInputStream("C:\\Users\\Yuzhe\\IdeaProjects\\shopping_platform_II\\src\\main\\resources\\Img\\base64.txt");
         String stringTooLong = IOUtils.toString(fis, "UTF-8");
         // 關閉檔案
         fis.close();
         Base64.Decoder decoder = Base64.getDecoder();
         try {
-            UUID uuid = UUID.randomUUID();
 
-            byte[] b = decoder.decode(stringTooLong);
+            byte[] b = decoder.decode(stringTooLong);    //>>這裡改直接放在前端資料夾
             String imgPath = "C:\\Users\\Yuzhe\\IdeaProjects\\shopping_platform_II\\src\\main\\resources\\Img\\"+uuid+".jpg";
 
             //圖片生成的路徑 +要生成的檔名
             Path imgFilePath = Path.of(imgPath);
             Files.write(imgFilePath, b, StandardOpenOption.CREATE);
 
-            imgFilePathList.add(imgPath);
-            // 刪除 txt 檔案
+            // 刪除 txt 檔案                            //這裡的路徑為上面txt檔案生成的路徑
             File fileToDelete = new File("src/main/resources/img/base64.txt");
             if (fileToDelete.delete()) {
                 System.out.println("Txt file deleted.");
@@ -53,7 +52,7 @@ public class Base64ToImage {
             e.printStackTrace();
         }
 
-        return imgFilePathList.get(0).toString();
+        return uuid.toString();
     }
 }
 /*

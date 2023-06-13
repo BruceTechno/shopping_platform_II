@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` VARCHAR(45) NULL,
   `active` TINYINT NULL DEFAULT 0,
   `identity` INT NULL DEFAULT 0,
+  `user_img` VARCHAR(450) NULL ,
   PRIMARY KEY (`id`));
 
   CREATE TABLE IF NOT EXISTS `shopping_car` (

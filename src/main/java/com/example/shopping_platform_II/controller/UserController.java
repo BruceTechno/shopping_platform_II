@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @CrossOrigin
 @RestController
@@ -80,5 +81,9 @@ public class UserController {
 	@PostMapping(value = "get_user_info")
 	public GetUserResponse getUserInfoGetUserResponse(HttpSession session) {
 		return userService.getUserInfoGetUserResponse(session);
+	}
+	@PostMapping(value = "add_user_img")
+	public RegisterResponse addUserImg(HttpSession session,@RequestBody AddImageRequest request) throws IOException {
+		return userService.addUserImg(session,request);
 	}
 }

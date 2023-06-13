@@ -316,21 +316,27 @@ public class CommodityServiceImpl implements CommodityService {
 	public AddCommodityResponse addImage(HttpSession session, AddImageRequest request) throws IOException {
 		String account = (String) session.getAttribute("account");
 		String pwd = (String) session.getAttribute("pwd");
+
 		int commodityNumber = request.getCommodityNumber();
 		String img = request.getImg();
+
 		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
 			return new AddCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
 		}
 		if (commodityNumber < 0) {
 			return new AddCommodityResponse(RtnCode.DATA_ERROR.getMessage());
 		}
-		//抓到上傳的圖片的絕對路徑
+		if (!StringUtils.hasText(img)){
+			return new AddCommodityResponse(RtnCode.CANNOT_EMPTY.getMessage());//檔案上傳失敗 之類的
+		}
+		//抓到上傳的圖片的 uuid  => uuid直接會是圖片的檔名
 		String imgFilePath = Base64ToImg(img);
 		//以對應的商品代碼 抓到商品欄位以存取 imgFilePath進去
 		Optional<Commodity> result = commodityDao.findById(commodityNumber);
 		if (!result.isPresent()) {
 			return new AddCommodityResponse(RtnCode.NOT_FOUND.getMessage());//沒有這個商品
 		}
+		//確認是不是自己的商品  =>不能存到別人的防呆
 		if (!result.get().getAccountSell().equals(account)) {
 			return new AddCommodityResponse(RtnCode.DATA_ERROR.getMessage());
 		}
