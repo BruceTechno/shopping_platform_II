@@ -19,7 +19,7 @@ public interface ShoppingCarDao extends JpaRepository<ShoppingCar,Integer> {
 
     @Transactional
     @Modifying
-    @Query("select new com.example.shopping_platform_II.vo.GetCommodityInfo(sc.userId,sc.commodityNumber,sc.quantity,c.name,c.category,c.inventory,c.price,c.accountSell)" +                                     //
+    @Query("select new com.example.shopping_platform_II.vo.GetCommodityInfo(sc.userId,sc.commodityNumber,sc.quantity,c.name,c.category,c.inventory,c.price,c.accountSell,c.imgPath)" +                                     //
             " from ShoppingCar sc join Commodity c on c.number = sc.commodityNumber" +
             " where sc.userId = :newUserId")
     public List<GetCommodityInfo> getCommodityFromShoppingCar (@Param("newUserId")String newUserid);

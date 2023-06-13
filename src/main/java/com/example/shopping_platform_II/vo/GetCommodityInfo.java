@@ -9,13 +9,13 @@ public class GetCommodityInfo {
     private int inventory;
     private int price;
     private String accountSell;
-
+    private String imgPath;
 //==
 
     public GetCommodityInfo() {
     }
 
-    public GetCommodityInfo(String userId, int commodityNumber, int quantity, String name, String category, int inventory, int price, String accountSell) {
+    public GetCommodityInfo(String userId, int commodityNumber, int quantity, String name, String category, int inventory, int price, String accountSell,String imgPath) {
         this.userId = userId;
         this.commodityNumber = commodityNumber;
         this.quantity = quantity;
@@ -24,6 +24,7 @@ public class GetCommodityInfo {
         this.inventory = inventory;
         this.price = price;
         this.accountSell = accountSell;
+        this.imgPath = imgPath;
     }
 
     //==
@@ -93,4 +94,11 @@ public class GetCommodityInfo {
         this.accountSell = accountSell;
     }
 
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
 }
