@@ -1,5 +1,6 @@
 package com.example.shopping_platform_II.service.impl;
 
+import com.example.shopping_platform_II.Util.Base64ToImage;
 import com.example.shopping_platform_II.constants.RtnCode;
 import com.example.shopping_platform_II.entity.Commodity;
 import com.example.shopping_platform_II.entity.User;
@@ -7,17 +8,27 @@ import com.example.shopping_platform_II.repository.CommodityDao;
 import com.example.shopping_platform_II.repository.UserDao;
 import com.example.shopping_platform_II.service.ifs.CommodityService;
 import com.example.shopping_platform_II.vo.*;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.sql.Connection;
+
+import static com.example.shopping_platform_II.Util.Base64ToImage.Base64ToImg;
+
+
 @Service
 public class CommodityServiceImpl implements CommodityService {
 
@@ -37,11 +48,10 @@ public class CommodityServiceImpl implements CommodityService {
         int inventory = request.getInventory();
         int price = request.getPrice();
         String accountSell = (String) session.getAttribute("account");
-        String img = request.getImg();
 
-        if (!StringUtils.hasText(img)){
-            return new AddCommodityResponse("55688");
-        }
+
+
+
         String account = (String) session.getAttribute("account");
         String pwd = (String) session.getAttribute("pwd");
 
@@ -52,7 +62,7 @@ public class CommodityServiceImpl implements CommodityService {
         if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
             return new AddCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
         }
-        int result = commodityDao.addCommodityWhereNotExists(number, name, category, inventory, price, accountSell, number,img);
+        int result = commodityDao.addCommodityWhereNotExists(number, name, category, inventory, price, accountSell, number);
         if (result == 0) {
             return new AddCommodityResponse(RtnCode.DATA_DUPLICATE.getMessage());
         }
@@ -266,4 +276,5 @@ public class CommodityServiceImpl implements CommodityService {
 //        }
 //        return RtnCode.SUCCESSFUL;
 //    }
+
 }
