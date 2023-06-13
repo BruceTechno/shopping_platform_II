@@ -4,6 +4,7 @@ public class SearchCommodityRequest {
     private String name;
     private String category;
     private String keyword; //could be name or category
+    private int number;
 //==
 
     public SearchCommodityRequest() {
@@ -14,7 +15,15 @@ public class SearchCommodityRequest {
         return name;
     }
 
-    public void setName(String name) {
+    public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public void setName(String name) {
         this.name = name;
     }
 

@@ -67,5 +67,15 @@ public class CommodityController {
     public SearchCommodityResponse searchCommodityByName(@RequestBody SearchCommodityRequest request) {
     	return commodityService.searchCommodityByName(request);
     }
+    
+    @PostMapping(value = "find_CommodityForManage")
+    public GetCommodityInfo findCommodityForManage(HttpSession session) {
+    	return commodityService.findCommodityForManage(session);
+    }
+    
+    @PostMapping(value = "search_com_by_number")
+    public SearchCommodityResponse searchCommodityById(HttpSession session,@RequestBody SearchCommodityRequest request) {
+    	return commodityService.searchCommodityById(session, request);
+    }
 
 }

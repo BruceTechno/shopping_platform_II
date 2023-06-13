@@ -1,5 +1,10 @@
 package com.example.shopping_platform_II.vo;
 
+import java.util.List;
+
+import com.example.shopping_platform_II.entity.Commodity;
+import com.fasterxml.jackson.annotation.JsonInclude;
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class GetCommodityInfo {
     private String userId;
     private int commodityNumber;
@@ -10,6 +15,9 @@ public class GetCommodityInfo {
     private int price;
     private String accountSell;
     private String imgPath;
+    
+    private String message;
+    private List<Commodity> commodityList;
 //==
 
     public GetCommodityInfo() {
@@ -28,6 +36,22 @@ public class GetCommodityInfo {
     }
 
     //==
+
+    
+public GetCommodityInfo(String message) {
+		super();
+		this.message = message;
+	}
+
+
+
+public GetCommodityInfo(String message, List<Commodity> commodityList) {
+	super();
+	this.message = message;
+	this.commodityList = commodityList;
+}
+
+//==
 
 
     public String getUserId() {
@@ -94,6 +118,7 @@ public class GetCommodityInfo {
         this.accountSell = accountSell;
     }
 
+
     public String getImgPath() {
         return imgPath;
     }
@@ -101,4 +126,21 @@ public class GetCommodityInfo {
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
     }
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public List<Commodity> getCommodityList() {
+		return commodityList;
+	}
+
+	public void setCommodityList(List<Commodity> commodityList) {
+		this.commodityList = commodityList;
+	}
+
 }

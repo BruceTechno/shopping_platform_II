@@ -9,6 +9,7 @@ public class SearchOrderResponse {
 	private String message;
 	
 	private List<Order> orderInfos;
+	private Order order;
 
 	public SearchOrderResponse() {
 		super();
@@ -24,6 +25,20 @@ public class SearchOrderResponse {
 		super();
 		this.message = message;
 		this.orderInfos = orderInfos;
+	}
+
+	public SearchOrderResponse(String message, Order order) {
+		super();
+		this.message = message;
+		this.order = order;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public String getMessage() {

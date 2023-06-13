@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS `commodity` (
   `inventory` INT NULL DEFAULT 0,
   `price` INT NULL DEFAULT 0,
   `account_sell` VARCHAR(45) NULL,
+  `introduction` VARCHAR(500) NULL,
+  `img_path` VARCHAR(500) NULL,
   PRIMARY KEY (`number`));
 
 CREATE TABLE IF NOT EXISTS `delivery_way_code` (

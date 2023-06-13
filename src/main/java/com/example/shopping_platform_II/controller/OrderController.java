@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shopping_platform_II.service.ifs.OrderService;
 
-@RestController
 @CrossOrigin
+@RestController
 public class OrderController {
 
     @Autowired
@@ -45,6 +45,11 @@ public class OrderController {
     @PostMapping(value = "update_order")
     public UpdateOrderResponse updateOrder(HttpSession httpSession, @RequestBody UpdateOrderRequest request) {
         return orderService.updateOrder(httpSession, request.getOrderNumber() ,request.getOrderInfos());
+    }
+    
+    @PostMapping(value = "search_order_by_orderNumber")
+    public SearchOrderResponse searchOrderByOrderNumber(HttpSession httpSession , @RequestBody UpdateOrderRequest request) {
+    	return orderService.searchOrderByOrderNumber(httpSession, request.getOrderNumber());
     }
 
 }
