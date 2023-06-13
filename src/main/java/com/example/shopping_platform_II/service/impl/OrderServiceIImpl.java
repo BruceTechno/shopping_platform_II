@@ -41,14 +41,14 @@ public class OrderServiceIImpl implements OrderService {
 	@Override
 	public AddOrderResponse addOrder(HttpSession httpSession, Map<Integer, Integer> orderInfos, int payWay,
 			int deliveryWay) {
-		
+
 		String accountBuy = (String) httpSession.getAttribute("account");
-		
+
 		String pwd = (String) httpSession.getAttribute("pwd");
 
 		// login check && account and password check
 		RtnCode res = checkLogin(accountBuy, pwd);
-		//check login return的null 改成 200 Success ?
+		// check login return的null 改成 200 Success ?
 		if (res != null) {
 			return new AddOrderResponse(res.getCode());
 		}
@@ -69,7 +69,7 @@ public class OrderServiceIImpl implements OrderService {
 			Optional<Commodity> op = commodityDao.findById(item.getKey());
 
 			comAndUser.put(item.getKey(), op.get().getAccountSell());
-			
+
 			accountSaleSet.add(op.get().getAccountSell());
 
 			// 減少庫存
@@ -77,7 +77,7 @@ public class OrderServiceIImpl implements OrderService {
 				return new AddOrderResponse(RtnCode.INVENTORY_NOT_ENOUGH.getCode());
 			}
 			op.get().setInventory(op.get().getInventory() - item.getValue());
-			
+
 			commodityDao.save(op.get());
 		}
 
@@ -101,10 +101,10 @@ public class OrderServiceIImpl implements OrderService {
 			String orderInfoStr = mapToString(newOrderInfo);
 
 			boolean checkOrderNumber = true;
-			
+
 			while (checkOrderNumber) {
 				int orderNumber = (int) (Math.random() * 10000 + 1);
-				
+
 				int check = orderDao.addOrderWhereNotExists(orderNumber, accountBuy, accountSaleItem, orderInfoStr,
 						payWay, deliveryWay, 0);
 				checkOrderNumber = check == 1 ? false : true;
@@ -120,7 +120,7 @@ public class OrderServiceIImpl implements OrderService {
 	public DeleteOrderResponse deleteOrder(HttpSession httpSession, int orderNumber) {
 
 		String accountBuy = (String) httpSession.getAttribute("account");
-		
+
 		String pwd = (String) httpSession.getAttribute("pwd");
 		// login check && account and password check
 		RtnCode res = checkLogin(accountBuy, pwd);
@@ -130,7 +130,7 @@ public class OrderServiceIImpl implements OrderService {
 
 		// check account_buy have this orderNumber
 		Order orderInfo = orderDao.findByAccountBuyAndOrderNumber(accountBuy, orderNumber);
-		
+
 		if (orderInfo == null) {
 			return new DeleteOrderResponse(RtnCode.NOT_FOUND.getCode());
 		}
@@ -149,11 +149,11 @@ public class OrderServiceIImpl implements OrderService {
 	public SearchOrderResponse searchOrderByAccountBuy(HttpSession httpSession) {
 
 		String accountBuy = (String) httpSession.getAttribute("account");
-		
+
 		String pwd = (String) httpSession.getAttribute("pwd");
 		// login check && account and password check
 		RtnCode res = checkLogin(accountBuy, pwd);
-		
+
 		if (res != null) {
 			return new SearchOrderResponse(res.getCode());
 		}
@@ -173,11 +173,11 @@ public class OrderServiceIImpl implements OrderService {
 	public SearchOrderResponse searchOrderByAccountSale(HttpSession httpSession) {
 
 		String accountSale = (String) httpSession.getAttribute("account");
-		
+
 		String pwd = (String) httpSession.getAttribute("pwd");
 		// login check && account and password check
 		RtnCode res = checkLogin(accountSale, pwd);
-		
+
 		if (res != null) {
 			return new SearchOrderResponse(res.getCode());
 		}
@@ -198,18 +198,18 @@ public class OrderServiceIImpl implements OrderService {
 			Map<Integer, Integer> newOrderInfos) {
 
 		String accountBuy = (String) httpSession.getAttribute("account");
-		
+
 		String pwd = (String) httpSession.getAttribute("pwd");
 
 		// login check && account and password check
-			
+
 		if (checkLogin(accountBuy, pwd) != null) {
 			return new UpdateOrderResponse(checkLogin(accountBuy, pwd).getCode());
 		}
 
 		// check account_buy have this orderNumber
 		Order orderInfo = orderDao.findByAccountBuyAndOrderNumber(accountBuy, orderNumber);
-		
+
 		if (orderInfo == null) {
 			return new UpdateOrderResponse(RtnCode.NOT_FOUND.getCode());
 		}
@@ -234,7 +234,7 @@ public class OrderServiceIImpl implements OrderService {
 			// plz login
 			return RtnCode.PLEASE_LOGIN_FIRST;
 		}
-		//todo 有session就代表有登入了 登入了帳密一定對 不用再check了吧?
+		// todo 有session就代表有登入了 登入了帳密一定對 不用再check了吧?
 		Integer checkRes = userDao.checkAccountAndPwd(account, pwd) == null ? 0 : 1;
 		if ((int) checkRes == 0) {
 			return RtnCode.ACCOUNT_PWD_ERROR;
@@ -248,9 +248,9 @@ public class OrderServiceIImpl implements OrderService {
 
 		// change map to string
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		String orderInfoStr = "";
-		
+
 		try {
 			orderInfoStr = mapper.writeValueAsString(orderInfos);
 		} catch (JsonProcessingException e) {
@@ -258,6 +258,26 @@ public class OrderServiceIImpl implements OrderService {
 		}
 
 		return orderInfoStr;
+	}
+
+	@Override
+	public SearchOrderResponse searchOrderByOrderNumber(HttpSession httpSession, int orderNumber) {
+
+		String account = (String) httpSession.getAttribute("account");
+
+		String pwd = (String) httpSession.getAttribute("pwd");
+
+		RtnCode res = checkLogin(account, pwd);
+
+		if (res != null) {
+			return new SearchOrderResponse(res.getCode());
+		}
+
+		
+		Optional<Order> op = orderDao.findById(orderNumber);
+		
+		
+		return new SearchOrderResponse(RtnCode.SUCCESSFUL.getMessage(),op.get());
 	}
 
 }

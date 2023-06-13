@@ -7,7 +7,7 @@ import java.util.List;
 public class SearchCommodityResponse {
     private String message ;
     private List<Commodity> commodityList;
-
+    private Commodity commodity;
 //==
 
     public SearchCommodityResponse() {
@@ -23,13 +23,27 @@ public class SearchCommodityResponse {
     }
 
 
-    //====
+    public SearchCommodityResponse(String message, Commodity commodity) {
+		super();
+		this.message = message;
+		this.commodity = commodity;
+	}
+
+	//====
 
     public List<Commodity> getCommodityList() {
         return commodityList;
     }
 
-    public void setCommodityList(List<Commodity> commodityList) {
+    public Commodity getCommodity() {
+		return commodity;
+	}
+
+	public void setCommodity(Commodity commodity) {
+		this.commodity = commodity;
+	}
+
+	public void setCommodityList(List<Commodity> commodityList) {
         this.commodityList = commodityList;
     }
 

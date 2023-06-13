@@ -34,5 +34,8 @@ public interface OrderDao extends JpaRepository<Order,Integer> {
 	public Order findByAccountBuyAndOrderNumber(String accountBuy,Integer orderNumber);
 	
 	public List<Order> findByAccountBuy(String accountBuy);
+	
 	public List<Order> findByAccountSale(String accountSale);
+	
+	
 }

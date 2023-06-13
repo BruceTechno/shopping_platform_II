@@ -6,13 +6,14 @@ import javax.servlet.http.HttpSession;
 
 import com.example.shopping_platform_II.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shopping_platform_II.service.ifs.OrderService;
 
+@CrossOrigin
 @RestController
 public class OrderController {
 
@@ -43,6 +44,11 @@ public class OrderController {
     @PostMapping(value = "update_order")
     public UpdateOrderResponse updateOrder(HttpSession httpSession, @RequestBody UpdateOrderRequest request) {
         return orderService.updateOrder(httpSession, request.getOrderNumber() ,request.getOrderInfos());
+    }
+    
+    @PostMapping(value = "search_order_by_orderNumber")
+    public SearchOrderResponse searchOrderByOrderNumber(HttpSession httpSession , @RequestBody UpdateOrderRequest request) {
+    	return orderService.searchOrderByOrderNumber(httpSession, request.getOrderNumber());
     }
 
 }

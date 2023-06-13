@@ -16,5 +16,6 @@ public interface CommodityService {
     public DistinctSearchResponse distinctSearchCommodityByName (HttpSession session,SearchCommodityRequest request);
     public DistinctSearchResponse distinctSearchCommodityByCategory (HttpSession session,SearchCommodityRequest request);
     public DistinctSearchResponse distinctSearchCommodityByNameOrCategory (HttpSession session,SearchCommodityRequest request);
-
+    public SearchCommodityResponse searchCommodityById(HttpSession session,SearchCommodityRequest request);
+    public GetCommodityInfo findCommodityForManage (HttpSession session);
 }
