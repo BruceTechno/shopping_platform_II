@@ -51,8 +51,8 @@ public class CommodityController {
     }
 
     @PostMapping(value = "distinctSearchCommodityByCategory")
-    public DistinctSearchResponse distinctSearchCommodityByCategory(HttpSession session, @RequestBody SearchCommodityRequest request) {
-        return commodityService.distinctSearchCommodityByCategory(session, request);
+    public DistinctSearchResponse distinctSearchCommodityByCategory( @RequestBody SearchCommodityRequest request) {
+        return commodityService.distinctSearchCommodityByCategory(request);
     }
 
     @PostMapping(value = "add_image")
