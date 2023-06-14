@@ -110,7 +110,7 @@ public class CommodityServiceImpl implements CommodityService {
     public DeleteCommodityResponse deleteCommodity(HttpSession session, DeleteCommodityRequest request) {
     	
     	
-    	int number = request.getNumber();
+    	int number = request.getCommodityNumber();
     	
 		
 		String account = (String) session.getAttribute("account");
@@ -123,7 +123,7 @@ public class CommodityServiceImpl implements CommodityService {
 		/*
 		 * 帳號密碼驗證
 		 */
-		if(StringUtils.hasText(account) || !StringUtils.hasText(pwd)){
+		if(!StringUtils.hasText(account) || !StringUtils.hasText(pwd)){
 			
 			return new DeleteCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
 

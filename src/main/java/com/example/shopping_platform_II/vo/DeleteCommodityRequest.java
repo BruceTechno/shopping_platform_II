@@ -19,14 +19,12 @@ public class DeleteCommodityRequest {
 
 //--------------------------------------------------------------
 
-	public int getNumber() {
+
+	public int getCommodityNumber() {
 		return commodityNumber;
 	}
 
-	public void setNumber(int number) {
-		this.commodityNumber = number;
+	public void setCommodityNumber(int commodityNumber) {
+		this.commodityNumber = commodityNumber;
 	}
-	
-	
-
 }
