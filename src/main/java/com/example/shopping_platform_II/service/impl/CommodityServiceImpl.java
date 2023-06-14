@@ -39,6 +39,7 @@ public class CommodityServiceImpl implements CommodityService {
 
     @Override
     public AddCommodityResponse addCommodity(HttpSession session, AddCommodityRequest request) {
+		int commodityNumber = (int) (Math.random() * 10000 + 1);
 
 		/*
 		 * 帳號密碼檢查
@@ -66,16 +67,13 @@ public class CommodityServiceImpl implements CommodityService {
 			return new AddCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
 
 		}
-		
-//		List<Commodity> sqlGoods = commodityDao.findAll();
-		
+
 		
 		// 上架前確認: 資料漏填, 與資料庫重複商品(確認number)
 		for(Commodity item: goods) {
-			
-			if(item.getNumber() <= 0 || !StringUtils.hasText(item.getName()) || 
-					!StringUtils.hasText(item.getCategory())||item.getInventory() <= 0||
-					item.getPrice() <= 0 || !StringUtils.hasText(item.getAccountSell())) {
+			item.setNumber(commodityNumber);
+			if(!StringUtils.hasText(item.getName()) || !StringUtils.hasText(item.getCategory())
+			    ||item.getInventory() <= 0||item.getPrice() <= 0 ||!StringUtils.hasText(item.getIntroduction())) {
 				
 				return new AddCommodityResponse(RtnCode.CONTENT_EMPTY.getMessage());
 			}
