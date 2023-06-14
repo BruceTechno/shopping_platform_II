@@ -25,6 +25,8 @@ public class User {
     private boolean active;
     @Column(name = "identity")
     private int identity;
+    @Column(name = "user_img")
+    private String userImg;
 //============================================================================================
 
     public User() {
@@ -102,5 +104,13 @@ public class User {
 
     public void setIdentity(int identity) {
         this.identity = identity;
+    }
+
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
     }
 }

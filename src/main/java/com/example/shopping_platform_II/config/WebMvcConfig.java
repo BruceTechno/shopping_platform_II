@@ -12,6 +12,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .allowedMethods("POST")
                 .allowedHeaders("*");
-
     }
 }

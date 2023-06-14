@@ -1,35 +1,33 @@
-package com.example.shopping_platform_II.entity;
+package com.example.shopping_platform_II.vo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "shopping_car")
-public class ShoppingCar {
-	@Id
-	@Column(name = "id")
+public class AddCommodityToCarRequest {
 	private int id;
-	@Column(name = "user_id")
-	private String userId;
-	@Column(name = "commodity_number")
-	private int commodityNumber;
-	@Column(name = "quantity")
-	private int quantity;
-//====================================================================================
 
-	public ShoppingCar() {
+	private String userId;
+
+	private int commodityNumber;
+
+	private int quantity;
+
+	public AddCommodityToCarRequest() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public ShoppingCar(String userId, int commodityNumber, int quantity) {
+	public AddCommodityToCarRequest(String userId, int commodityNumber, int quantity) {
 		super();
 		this.userId = userId;
 		this.commodityNumber = commodityNumber;
 		this.quantity = quantity;
 	}
 
-//====================================================================================
+	public AddCommodityToCarRequest(int id, String userId, int commodityNumber, int quantity) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.commodityNumber = commodityNumber;
+		this.quantity = quantity;
+	}
 
 	public int getId() {
 		return id;
@@ -62,4 +60,5 @@ public class ShoppingCar {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 }

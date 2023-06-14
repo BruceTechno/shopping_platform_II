@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS `commodity` (
   `inventory` INT NULL DEFAULT 0,
   `price` INT NULL DEFAULT 0,
   `account_sell` VARCHAR(45) NULL,
+  `introduction` VARCHAR(500) NULL,
+  `img_path` VARCHAR(500) NULL,
   PRIMARY KEY (`number`));
 
 CREATE TABLE IF NOT EXISTS `delivery_way_code` (
@@ -42,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` VARCHAR(45) NULL,
   `active` TINYINT NULL DEFAULT 0,
   `identity` INT NULL DEFAULT 0,
+  `user_img` VARCHAR(450) NULL ,
   PRIMARY KEY (`id`));
 
   CREATE TABLE IF NOT EXISTS `shopping_car` (

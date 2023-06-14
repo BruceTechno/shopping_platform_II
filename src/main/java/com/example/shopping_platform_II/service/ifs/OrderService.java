@@ -21,4 +21,6 @@ public interface OrderService {
 	public SearchOrderResponse searchOrderByAccountSale(HttpSession httpSession);
 	
 	public UpdateOrderResponse updateOrder(HttpSession httpSession , int orderNumber , Map<Integer, Integer> orderInfos);
+	
+	public SearchOrderResponse searchOrderByOrderNumber(HttpSession httpSession , int orderNumber);
 }

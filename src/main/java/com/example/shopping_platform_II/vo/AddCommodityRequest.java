@@ -5,34 +5,40 @@ import java.util.List;
 import com.example.shopping_platform_II.entity.Commodity;
 
 public class AddCommodityRequest {
+
 	
 	private List<Commodity> reqCommodity;
 	
 	private int number ;
-    private String name;
-    private String category;
-    private int inventory;
-    private int price;
-    private String accountSell;
+
+//    private String name;
+//    private String category;
+//    private int inventory;
+//    private int price;
+//    private String accountSell;
+
 	
 //-----------------------------------------------------------------------
+
+
+//==================================================================
+
 
 	public AddCommodityRequest() {
 		super();
 	}
-
 //-----------------------------------------------------------------------	
 	
 
-	public AddCommodityRequest(int number, String name, String category, int inventory, int price, String accountSell) {
-		super();
-		this.number = number;
-		this.name = name;
-		this.category = category;
-		this.inventory = inventory;
-		this.price = price;
-		this.accountSell = accountSell;
-	}
+//	public AddCommodityRequest(int number, String name, String category, int inventory, int price, String accountSell) {
+//		super();
+//		this.number = number;
+//		this.name = name;
+//		this.category = category;
+//		this.inventory = inventory;
+//		this.price = price;
+//		this.accountSell = accountSell;
+//	}
 
 
 //-----------------------------------------------------------------------
@@ -50,50 +56,50 @@ public class AddCommodityRequest {
 		this.number = number;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public int getInventory() {
-		return inventory;
-	}
-
-	public void setInventory(int inventory) {
-		this.inventory = inventory;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	
-	
-
-
-	public String getAccountSell() {
-		return accountSell;
-	}
-
-	public void setAccountSell(String accountSell) {
-		this.accountSell = accountSell;
-	}
-
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	public String getCategory() {
+//		return category;
+//	}
+//
+//	public void setCategory(String category) {
+//		this.category = category;
+//	}
+//
+//	public int getInventory() {
+//		return inventory;
+//	}
+//
+//	public void setInventory(int inventory) {
+//		this.inventory = inventory;
+//	}
+//
+//	public int getPrice() {
+//		return price;
+//	}
+//
+//	public void setPrice(int price) {
+//		this.price = price;
+//	}
+//
+//	
+//	
+//
+//
+//	public String getAccountSell() {
+//		return accountSell;
+//	}
+//
+//	public void setAccountSell(String accountSell) {
+//		this.accountSell = accountSell;
+//	}
+//
 	public List<Commodity> getReqCommodity() {
 		return reqCommodity;
 	}
@@ -101,13 +107,10 @@ public class AddCommodityRequest {
 	public void setReqCommodity(List<Commodity> reqCommodity) {
 		this.reqCommodity = reqCommodity;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+//	
+//	
+//    public void setAccountSell(String accountSell) {
+//        this.accountSell = accountSell;
+//    }
 
 }
