@@ -83,4 +83,9 @@ public class CommodityController {
     public UpdateCommodityResponse updateCommodity(HttpSession session,@RequestBody UpdateCommodityRequest request){
         return commodityService.updateCommodity(session,request);
     }
+    // 0614 15:33 新增
+    @PostMapping(value = "get_all_com")
+    public UpdateCommodityResponse getAllCommodity() {
+        return commodityService.getAllCommodity();
+    }
 }

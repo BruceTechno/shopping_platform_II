@@ -396,7 +396,7 @@ public class CommodityServiceImpl implements CommodityService {
 		}
 		return new AddCommodityResponse(RtnCode.SUCCESSFUL.getMessage());
 	}
-
+	// 0614 新增
 	@Override
 	public UpdateCommodityResponse updateCommodity(HttpSession session, UpdateCommodityRequest request) {
 		String account = (String) session.getAttribute("account");
@@ -435,5 +435,10 @@ public class CommodityServiceImpl implements CommodityService {
 			return new UpdateCommodityResponse(RtnCode.DATA_ERROR.getMessage());
 		}
 		return new UpdateCommodityResponse(RtnCode.SUCCESSFUL.getMessage());
+	}
+	//0614新增
+	@Override
+	public UpdateCommodityResponse getAllCommodity() {
+		return new UpdateCommodityResponse(commodityDao.findAll());
 	}
 }

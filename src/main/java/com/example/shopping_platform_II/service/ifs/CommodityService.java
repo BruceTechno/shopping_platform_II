@@ -25,4 +25,6 @@ public interface CommodityService {
     public GetCommodityInfo findCommodityForManage (HttpSession session);
 
     public UpdateCommodityResponse updateCommodity(HttpSession session , UpdateCommodityRequest request);
+
+    public UpdateCommodityResponse getAllCommodity ();
 }
