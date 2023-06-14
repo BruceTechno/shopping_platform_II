@@ -216,6 +216,5 @@ public class UserServiceImpl implements UserService {
 			return new RegisterResponse(RtnCode.DATA_ERROR.getMessage());
 		}
 		return new RegisterResponse(RtnCode.SUCCESSFUL.getMessage());
-
 	}
 }

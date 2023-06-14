@@ -396,4 +396,44 @@ public class CommodityServiceImpl implements CommodityService {
 		}
 		return new AddCommodityResponse(RtnCode.SUCCESSFUL.getMessage());
 	}
+
+	@Override
+	public UpdateCommodityResponse updateCommodity(HttpSession session, UpdateCommodityRequest request) {
+		String account = (String) session.getAttribute("account");
+		String pwd = (String) session.getAttribute("pwd");
+
+		int commodityNumber = request.getCommodityNumber();
+		String newName = request.getName();
+		String newCategory = request.getCategory();
+		int newInventory = request.getInventory();
+		int newPrice = request.getPrice();
+		String newIntroduction = request.getIntroduction();
+		String newImgPath = request.getImgPath();
+
+		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
+			return new UpdateCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
+		}
+
+		if (commodityNumber < 0 || newInventory < 0 || newPrice < 0 ){
+			return new UpdateCommodityResponse(RtnCode.DATA_ERROR.getMessage());
+		}
+
+		if(!StringUtils.hasText(newName) || !StringUtils.hasText(newCategory)
+				||!StringUtils.hasText(newIntroduction) || !StringUtils.hasText(newImgPath)){
+			return new UpdateCommodityResponse(RtnCode.CANNOT_EMPTY.getMessage());
+		}
+		Optional<Commodity> findResult = commodityDao.findById(commodityNumber);
+		if (!findResult.isPresent()){
+			return new UpdateCommodityResponse(RtnCode.NOT_FOUND.getMessage());//輸入的商品代號 找不到商品
+		}
+		if (!account.equals(findResult.get().getAccountSell())){
+			return new UpdateCommodityResponse(RtnCode.DATA_ERROR.getMessage()) ;// 這裡報錯代表 改到不是屬於自己的商品
+		}
+
+		int result = commodityDao.updateCommodityByNumber(newName, newCategory, newInventory, newPrice, newIntroduction, newImgPath, commodityNumber);
+		if (result == 0) {
+			return new UpdateCommodityResponse(RtnCode.DATA_ERROR.getMessage());
+		}
+		return new UpdateCommodityResponse(RtnCode.SUCCESSFUL.getMessage());
+	}
 }

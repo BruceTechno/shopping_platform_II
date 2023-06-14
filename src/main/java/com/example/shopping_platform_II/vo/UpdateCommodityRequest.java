@@ -7,6 +7,10 @@ public class UpdateCommodityRequest {
     private int inventory;
     private int price;
     private String accountSell;
+
+    private String introduction;
+
+    private String imgPath;
 //==================================================================
 
     public UpdateCommodityRequest() {
@@ -60,5 +64,21 @@ public class UpdateCommodityRequest {
 
     public void setAccountSell(String accountSell) {
         this.accountSell = accountSell;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }

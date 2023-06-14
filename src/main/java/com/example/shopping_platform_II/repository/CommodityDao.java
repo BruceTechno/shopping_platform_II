@@ -82,6 +82,20 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
             @Param("newImgPath")String imgPath,
             @Param("inputNumber")int inputNumber);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Commodity c set c.name = :newName, c.category = :newCategory," +
+            " c.inventory = :newInventory, c.price = :newPrice, c.introduction = :newIntroduction, c.imgPath = :newImgPath" +
+            " where c.number = :inputNumber")
+    public int updateCommodityByNumber(
+            @Param("newName")String inputName,
+            @Param("newCategory")String inputCategory,
+            @Param("newInventory")int inputInventory,
+            @Param("newPrice")int inputPrice,
+            @Param("newIntroduction")String inputIntroduction,
+            @Param("newImgPath")String inputImgPath,
+            @Param("inputNumber")int inputNumber);
+
     
      public List<Commodity> findByAccountSell(String accountSell);
 //    @Transactional

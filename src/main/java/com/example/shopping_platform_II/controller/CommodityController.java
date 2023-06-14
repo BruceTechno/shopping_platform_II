@@ -78,4 +78,9 @@ public class CommodityController {
     	return commodityService.searchCommodityById(session, request);
     }
 
+    // 0614 被嫌棄後新增的
+    @PostMapping(value = "update_commodity")
+    public UpdateCommodityResponse updateCommodity(HttpSession session,@RequestBody UpdateCommodityRequest request){
+        return commodityService.updateCommodity(session,request);
+    }
 }
