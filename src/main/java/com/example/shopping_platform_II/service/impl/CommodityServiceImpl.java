@@ -47,8 +47,7 @@ public class CommodityServiceImpl implements CommodityService {
 		String account = (String) session.getAttribute("account");
 		
 		String pwd = (String) session.getAttribute("pwd");
-		
-		String accountSell = (String) session.getAttribute("account");
+
 
 		List<Commodity> goods = request.getReqCommodity();
 		
@@ -72,6 +71,7 @@ public class CommodityServiceImpl implements CommodityService {
 		// 上架前確認: 資料漏填, 與資料庫重複商品(確認number)
 		for(Commodity item: goods) {
 			item.setNumber(commodityNumber);
+			item.setAccountSell(account);
 			if(!StringUtils.hasText(item.getName()) || !StringUtils.hasText(item.getCategory())
 			    ||item.getInventory() <= 0||item.getPrice() <= 0 ||!StringUtils.hasText(item.getIntroduction())) {
 				
