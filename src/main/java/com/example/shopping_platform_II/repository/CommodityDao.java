@@ -55,21 +55,21 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
     public List<Commodity> findByCategory (String category);
     @Transactional
     @Modifying
-    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
+    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell,c.imgPath)" +
             " from Commodity c" +
             " where c.name like concat('%',:inputName,'%')")
     public List<DistinctSearchResponse> distinctSearchByName (@Param("inputName")String name);
 
     @Transactional
     @Modifying
-    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
+    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell,c.imgPath)" +
             " from Commodity c" +
-            " where c.name like concat('%',:inputCategory,'%')")
+            " where c.category like concat('%',:inputCategory,'%')")
     public List<DistinctSearchResponse> distinctSearchByCategory (@Param("inputCategory")String category);
 
     @Transactional
     @Modifying
-    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell)" +
+    @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell,c.imgPath)" +
             " from Commodity c" +
             " where c.name like concat('%',:inputKeyword,'%')   ")
     public List<DistinctSearchResponse> distinctSearchByNameOrCategory (@Param("inputKeyword")String nameOrCategory);

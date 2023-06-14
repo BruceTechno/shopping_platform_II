@@ -292,17 +292,14 @@ public class CommodityServiceImpl implements CommodityService {
 	}
 
 	@Override
-	public DistinctSearchResponse distinctSearchCommodityByCategory(HttpSession session,SearchCommodityRequest request) {
-		String account = (String) session.getAttribute("account");
-		String pwd = (String) session.getAttribute("pwd");
+	public DistinctSearchResponse distinctSearchCommodityByCategory(SearchCommodityRequest request) {
+		
 		String category = request.getCategory();
-		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
-			return new DistinctSearchResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
-		}
+		
 		if (!StringUtils.hasText(category)) {
 			return new DistinctSearchResponse(RtnCode.CANNOT_EMPTY.getMessage());
 		}
-		List<DistinctSearchResponse> result = commodityDao.distinctSearchByName(category);
+		List<DistinctSearchResponse> result = commodityDao.distinctSearchByCategory(category);
 		if (CollectionUtils.isEmpty(result)) {
 			return new DistinctSearchResponse(RtnCode.NOT_FOUND.getMessage());
 		}

@@ -15,18 +15,21 @@ public class DistinctSearchResponse {
     private String accountSell;
     private List<DistinctSearchResponse> distinctSearchResponseList;
     private String message;
+    private String imgPath;
 //==
 
     public DistinctSearchResponse() {
     }
 
-    public DistinctSearchResponse(int number, String name, String category, int inventory, int price, String accountSell) {
+    public DistinctSearchResponse(int number, String name, String category, int inventory, int price, String accountSell
+    		,String imgPath) {
         this.number = number;
         this.name = name;
         this.category = category;
         this.inventory = inventory;
         this.price = price;
         this.accountSell = accountSell;
+        this.imgPath = imgPath;
     }
 
     public DistinctSearchResponse(List<DistinctSearchResponse> distinctSearchResponseList, String message) {
@@ -43,7 +46,15 @@ public class DistinctSearchResponse {
         return number;
     }
 
-    public void setNumber(int number) {
+    public String getImgPath() {
+		return imgPath;
+	}
+
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
+
+	public void setNumber(int number) {
         this.number = number;
     }
 
