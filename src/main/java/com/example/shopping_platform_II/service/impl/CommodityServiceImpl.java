@@ -321,13 +321,10 @@ public class CommodityServiceImpl implements CommodityService {
 	}
 
 	@Override
-	public SearchCommodityResponse searchCommodityById(HttpSession session, SearchCommodityRequest request) {
+	public SearchCommodityResponse searchCommodityById( SearchCommodityRequest request) {
 		int number = request.getNumber();
-		String account = (String) session.getAttribute("account");
-		String pwd = (String) session.getAttribute("pwd");
-		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
-			return new SearchCommodityResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
-		}
+		
+		
 		Optional<Commodity> op = commodityDao.findById(number);
 		if (op.get() == null) {
 			return new SearchCommodityResponse(RtnCode.NOT_FOUND.getMessage());

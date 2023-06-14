@@ -16,6 +16,9 @@ public interface OrderService {
 	
 	public DeleteOrderResponse deleteOrder(HttpSession httpSession ,int orderNumber );
 	
+	public DeleteOrderResponse deleteOrderBySale(HttpSession httpSession ,int orderNumber );
+	
+	
 	public SearchOrderResponse searchOrderByAccountBuy(HttpSession httpSession);
 	
 	public SearchOrderResponse searchOrderByAccountSale(HttpSession httpSession);

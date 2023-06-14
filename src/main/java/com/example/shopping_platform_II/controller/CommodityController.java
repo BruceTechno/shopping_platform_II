@@ -71,8 +71,8 @@ public class CommodityController {
     }
     
     @PostMapping(value = "search_com_by_number")
-    public SearchCommodityResponse searchCommodityById(HttpSession session,@RequestBody SearchCommodityRequest request) {
-    	return commodityService.searchCommodityById(session, request);
+    public SearchCommodityResponse searchCommodityById(@RequestBody SearchCommodityRequest request) {
+    	return commodityService.searchCommodityById( request);
     }
 
     // 0614 被嫌棄後新增的

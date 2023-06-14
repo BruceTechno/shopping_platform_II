@@ -273,11 +273,36 @@ public class OrderServiceIImpl implements OrderService {
 			return new SearchOrderResponse(res.getCode());
 		}
 
-		
 		Optional<Order> op = orderDao.findById(orderNumber);
-		
-		
-		return new SearchOrderResponse(RtnCode.SUCCESSFUL.getMessage(),op.get());
+
+		return new SearchOrderResponse(RtnCode.SUCCESSFUL.getMessage(), op.get());
+	}
+
+	@Override
+	public DeleteOrderResponse deleteOrderBySale(HttpSession httpSession, int orderNumber) {
+		String accountSale = (String) httpSession.getAttribute("account");
+
+		String pwd = (String) httpSession.getAttribute("pwd");
+		// login check && account and password check
+		RtnCode res = checkLogin(accountSale, pwd);
+		if (res != null) {
+			return new DeleteOrderResponse(res.getCode());
+		}
+
+		// check account_buy have this orderNumber
+		Order orderInfo = orderDao.findByAccountSaleAndOrderNumber(accountSale, orderNumber);
+
+		if (orderInfo == null) {
+			return new DeleteOrderResponse(RtnCode.NOT_FOUND.getCode());
+		}
+
+		if (orderInfo.getStatus() == 3) {
+			return new DeleteOrderResponse(RtnCode.CAN_NOT_DELETE.getCode());
+		}
+
+		orderDao.deleteById(orderNumber);
+
+		return new DeleteOrderResponse(RtnCode.SUCCESSFUL.getCode());
 	}
 
 }

@@ -51,5 +51,10 @@ public class OrderController {
     public SearchOrderResponse searchOrderByOrderNumber(HttpSession httpSession , @RequestBody UpdateOrderRequest request) {
     	return orderService.searchOrderByOrderNumber(httpSession, request.getOrderNumber());
     }
+    
+    @PostMapping(value = "delete_order_by_sale")
+    public DeleteOrderResponse deleteOrderBySale(HttpSession httpSession ,@RequestBody DeleteOderRequest request ) {
+    	return orderService.deleteOrderBySale(httpSession, request.getOrderNumber());
+    }
 
 }
