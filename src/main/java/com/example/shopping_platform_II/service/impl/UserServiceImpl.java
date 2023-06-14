@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import static com.example.shopping_platform_II.Util.Base64ToImage.Base64ToImg;
+import static com.example.shopping_platform_II.Util.Base64ToImgForUser.Base64ToImgForUser;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -207,7 +208,7 @@ public class UserServiceImpl implements UserService {
 			return new RegisterResponse(RtnCode.CANNOT_EMPTY.getMessage());//檔案上傳失敗 之類的
 		}
 		//抓到上傳的圖片的 uuid  => uuid直接會是圖片的檔名
-		String imgFilePath = Base64ToImg(img);
+		String imgFilePath = Base64ToImgForUser(img,account);
 
 		int updateResult = userDao.updateUserImgByAccount(imgFilePath,account);
 
