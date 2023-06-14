@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public interface CommodityService {
-    public AddCommodityResponse addCommodity (HttpSession session, AddCommodityRequest request);
+    public AddCommodityResponse addCommodity (HttpSession session, AddCommodityRequest request) throws IOException;
     public AddCommodityResponse addImage (HttpSession session, AddImageRequest request) throws IOException;
     public DeleteCommodityResponse deleteCommodity(HttpSession session , DeleteCommodityRequest request);
     public UpdateCommodityResponse updateNameByNumber(HttpSession session , UpdateCommodityRequest request);

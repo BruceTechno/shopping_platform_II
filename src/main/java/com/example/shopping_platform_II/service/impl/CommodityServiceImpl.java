@@ -38,7 +38,7 @@ public class CommodityServiceImpl implements CommodityService {
 	private UserDao userDao;
 
     @Override
-    public AddCommodityResponse addCommodity(HttpSession session, AddCommodityRequest request) {
+    public AddCommodityResponse addCommodity(HttpSession session, AddCommodityRequest request) throws IOException {
 		int commodityNumber = (int) (Math.random() * 10000 + 1);
 
 		/*
@@ -47,6 +47,7 @@ public class CommodityServiceImpl implements CommodityService {
 		String account = (String) session.getAttribute("account");
 		
 		String pwd = (String) session.getAttribute("pwd");
+
 
 
 		List<Commodity> goods = request.getReqCommodity();
@@ -72,12 +73,16 @@ public class CommodityServiceImpl implements CommodityService {
 		for(Commodity item: goods) {
 			item.setNumber(commodityNumber);
 			item.setAccountSell(account);
+
 			if(!StringUtils.hasText(item.getName()) || !StringUtils.hasText(item.getCategory())
-			    ||item.getInventory() <= 0||item.getPrice() <= 0 ||!StringUtils.hasText(item.getIntroduction())) {
+			    ||item.getInventory() <= 0||item.getPrice() <= 0 ||!StringUtils.hasText(item.getIntroduction())
+				||!StringUtils.hasText(item.getImgPath())) {
 				
 				return new AddCommodityResponse(RtnCode.CONTENT_EMPTY.getMessage());
 			}
-			
+
+
+//			String imgFilePath = Base64ToImg(img);
 
 			
 			/*
@@ -91,13 +96,8 @@ public class CommodityServiceImpl implements CommodityService {
 				// 報錯(編號重複)
 				return new AddCommodityResponse(RtnCode.NUMBER_ERROR.getMessage());
 			}
-			
-//		 int result = commodityDao.addCommodityWhereNotExists(goods, accountSell);
-//	        if (result == 0) {
-//	            return new addCommodityResponse(RtnCode.DATA_DUPLICATE.getMessage());
-//	        }
-			
-			
+		item.setImgPath(Base64ToImg(item.getImgPath()));
+
 		}
 		
 		commodityDao.saveAll(goods);

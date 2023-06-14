@@ -16,7 +16,7 @@ public class CommodityController {
     private CommodityService commodityService;
 
     @PostMapping(value = "add_commodity")
-    public AddCommodityResponse addCommodity(HttpSession session, @RequestBody AddCommodityRequest request) {
+    public AddCommodityResponse addCommodity(HttpSession session, @RequestBody AddCommodityRequest request) throws IOException {
         return commodityService.addCommodity(session, request);
     }
 
