@@ -3,10 +3,7 @@ package com.example.shopping_platform_II.controller;
 import com.example.shopping_platform_II.service.ifs.CommodityService;
 import com.example.shopping_platform_II.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -84,7 +81,7 @@ public class CommodityController {
         return commodityService.updateCommodity(session,request);
     }
     // 0614 15:33 新增
-    @PostMapping(value = "get_all_com")
+    @GetMapping(value = "get_all_com")
     public UpdateCommodityResponse getAllCommodity() {
         return commodityService.getAllCommodity();
     }
