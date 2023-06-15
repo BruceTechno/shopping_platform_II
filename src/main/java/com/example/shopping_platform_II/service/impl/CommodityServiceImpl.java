@@ -336,17 +336,14 @@ public class CommodityServiceImpl implements CommodityService {
 
 
 	@Override
-	public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(HttpSession session, SearchCommodityRequest request) {
-		String account = (String) session.getAttribute("account");
-		String pwd = (String) session.getAttribute("pwd");
+	public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(SearchCommodityRequest request) {
+
 		String keyword = request.getKeyword();
-		if (!StringUtils.hasText(account) || !StringUtils.hasText(pwd)) {
-			return new DistinctSearchResponse(RtnCode.PLEASE_LOGIN_FIRST.getMessage());
-		}
+
 		if (!StringUtils.hasText(keyword)) {
 			return new DistinctSearchResponse(RtnCode.CANNOT_EMPTY.getMessage());
 		}
-		List<DistinctSearchResponse> result = commodityDao.distinctSearchByName(keyword);
+		List<DistinctSearchResponse> result = commodityDao.distinctSearchByNameOrCategory(keyword);
 		if (CollectionUtils.isEmpty(result)) {
 			return new DistinctSearchResponse(RtnCode.NOT_FOUND.getMessage());
 		}
@@ -432,5 +429,13 @@ public class CommodityServiceImpl implements CommodityService {
 	@Override
 	public UpdateCommodityResponse getAllCommodity() {
 		return new UpdateCommodityResponse(commodityDao.findAll());
+	}
+
+	// 0615 新增
+
+	@Override
+	public UpdateCommodityResponse searchTop4CommodityById() {
+		commodityDao.findTop4ByNumberBetween(1,10000);
+		return new UpdateCommodityResponse(commodityDao.findTop4ByNumberBetween(1,10000));
 	}
 }

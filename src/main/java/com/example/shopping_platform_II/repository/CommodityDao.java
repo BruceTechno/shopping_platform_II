@@ -71,7 +71,8 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
     @Modifying
     @Query("select new com.example.shopping_platform_II.vo.DistinctSearchResponse(c.number,c.name,c.category,c.inventory,c.price,c.accountSell,c.imgPath)" +
             " from Commodity c" +
-            " where c.name like concat('%',:inputKeyword,'%')   ")
+            " where c.name like concat('%',:inputKeyword,'%') or" +
+            " c.category like concat('%',:inputKeyword,'%')")
     public List<DistinctSearchResponse> distinctSearchByNameOrCategory (@Param("inputKeyword")String nameOrCategory);
 
 
@@ -98,13 +99,9 @@ public interface CommodityDao extends JpaRepository<Commodity,Integer> {
 
     
      public List<Commodity> findByAccountSell(String accountSell);
-//    @Transactional
-//    @Modifying
-//    @Query("select new com.example.subject_system.vo.StudentResponse(s.number,s.name,c.code,c.name,c.day,c.startTime,c.endTime,c.credit)" +
-//            " from Course c join Student s on s.code" +
-//            " Like concat('%',c.code,'%')" +
-//            " where s.number = :newNumber")
-//    public List<StudentResponse> searchByStudentNumber(@Param("newNumber")int newNumber);
+
+     public List<Commodity> findTop4ByNumberBetween(int number1 , int number2);
+
 
 
 }

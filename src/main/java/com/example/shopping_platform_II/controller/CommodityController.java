@@ -85,4 +85,15 @@ public class CommodityController {
     public UpdateCommodityResponse getAllCommodity() {
         return commodityService.getAllCommodity();
     }
+
+    // 0615 15:00 新增
+    @PostMapping(value = "search_com_by_name_or_category")
+    public DistinctSearchResponse distinctSearchCommodityByNameOrCategory(@RequestBody SearchCommodityRequest request) {
+        return commodityService.distinctSearchCommodityByNameOrCategory(request);
+    }
+    //0615新增
+    @GetMapping(value = "get_4_commodity")
+    public UpdateCommodityResponse searchTop4CommodityById() {
+        return commodityService.searchTop4CommodityById();
+    }
 }
