@@ -106,7 +106,7 @@ public class OrderServiceIImpl implements OrderService {
 				int orderNumber = (int) (Math.random() * 10000 + 1);
 
 				int check = orderDao.addOrderWhereNotExists(orderNumber, accountBuy, accountSaleItem, orderInfoStr,
-						payWay, deliveryWay, 0);
+						payWay, deliveryWay, 1);
 				checkOrderNumber = check == 1 ? false : true;
 			}
 
