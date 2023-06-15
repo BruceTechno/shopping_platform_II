@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 		String account = request.getAccount();
 		String pwd = request.getPwd();
 
-		User result = userDao.findByAccountAndPwdAndActive(account, pwd, true);
+		User result = userDao.findByAccountAndPwdAndActive(account, pwd, false);
 		if (result == null) {
 			return new LoginResponse(RtnCode.DATA_ERROR.getMessage());// 登入失敗或未激活
 		}
