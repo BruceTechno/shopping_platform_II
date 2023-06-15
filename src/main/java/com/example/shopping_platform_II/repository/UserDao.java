@@ -17,15 +17,16 @@ import javax.transaction.Transactional;
 public interface UserDao extends JpaRepository<User,Integer> {
     @Transactional
     @Modifying
-    @Query(value = "insert into user(account,pwd,name,address,phone)" +
-            " select :inputAccount, :inputPwd, :inputName, :inputAddress, :inputPhone" +
+    @Query(value = "insert into user(account,pwd,name,address,phone,user_img)" +
+            " select :inputAccount, :inputPwd, :inputName, :inputAddress, :inputPhone , :inputImg" +
             " where not exists (select 1 from user where account = :inputAccount)" ,nativeQuery = true)
     public int insertUserInfoWhereNotExists(
             @Param("inputAccount")String inputAccount,
             @Param("inputPwd")String inputPwd,
             @Param("inputName")String inputName,
             @Param("inputAddress")String inputAddress,
-            @Param("inputPhone")String inputPhone);
+            @Param("inputPhone")String inputPhone,
+            @Param("inputImg")String inputImg);
 
     public User findByAccountAndPwd(String account ,String pwd);
 

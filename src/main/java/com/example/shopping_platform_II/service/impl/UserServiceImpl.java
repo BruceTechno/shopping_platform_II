@@ -41,11 +41,11 @@ public class UserServiceImpl implements UserService {
 				|| !StringUtils.hasText(phone) || !StringUtils.hasText(address)) {
 			return new RegisterResponse(RtnCode.DATA_ERROR.getMessage());
 		}
-		if (!phone.matches("[0-9]{4}-[0-9]{6}") || !pwd.matches(patternPwd)) {
+		if (!phone.matches("[0-9]{4}[0-9]{6}") || !pwd.matches(patternPwd)) {
 			return new RegisterResponse(RtnCode.DATA_ERROR.getMessage());
 		}
 
-		int result = userDao.insertUserInfoWhereNotExists(account, pwd, name, address, phone);
+		int result = userDao.insertUserInfoWhereNotExists(account, pwd, name, address, phone,"normal_user");
 
 		if (result == 0) {
 			return new RegisterResponse(RtnCode.DATA_DUPLICATE.getMessage());
