@@ -35,7 +35,7 @@ public class Base64ToImage {
         try {
 
             byte[] b = decoder.decode(stringTooLong);    //>>這裡改直接放在前端資料夾
-            String imgPath = "C:\\Users\\Yuzhe\\IdeaProjects\\shopping_platform_II\\src\\main\\resources\\Img\\"+uuid+".jpg";
+            String imgPath = "C:\\Users\\Yuzhe\\Desktop\\shopping_platform_Front_End\\shopping_platform_front_end\\pic\\"+uuid+".jpg";
 
             //圖片生成的路徑 +要生成的檔名
             Path imgFilePath = Path.of(imgPath);

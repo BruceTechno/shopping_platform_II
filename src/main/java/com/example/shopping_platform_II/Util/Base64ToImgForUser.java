@@ -14,7 +14,7 @@ public class Base64ToImgForUser {
 
         // 寫入到 txt 檔案
         try {                                                               //txt檔案生成位置 =>生在Java
-            String filePath = "D:\\java_project\\shopping_platform_II\\src\\main\\resources\\Img\\base64.txt";
+            String filePath = "C:\\Users\\Yuzhe\\IdeaProjects\\shopping_platform_II\\src\\main\\resources\\Img\\base64.txt";
             FileWriter fileWriter = new FileWriter(filePath);
             fileWriter.write(imgBase64);
             fileWriter.close();
@@ -23,7 +23,7 @@ public class Base64ToImgForUser {
         }
 
         // 將 txt 檔案讀取並轉換成圖片                                     路徑同上喔 =>生在Java
-        FileInputStream fis = new FileInputStream("D:\\java_project\\shopping_platform_II\\src\\main\\resources\\Img\\base64.txt");
+        FileInputStream fis = new FileInputStream("C:\\Users\\Yuzhe\\IdeaProjects\\shopping_platform_II\\src\\main\\resources\\Img\\base64.txt");
         String stringTooLong = IOUtils.toString(fis, "UTF-8");
         // 關閉檔案
         fis.close();
@@ -31,7 +31,7 @@ public class Base64ToImgForUser {
         try {
 
             byte[] b = decoder.decode(stringTooLong);    //>>這裡改直接放在前端資料夾
-            String imgPath = "D:\\VScode\\shopping_platform_front_end\\pic\\"+account+".jpg";
+            String imgPath = "C:\\Users\\Yuzhe\\Desktop\\shopping_platform_Front_End\\shopping_platform_front_end\\pic\\"+account+".jpg";
 
             //圖片生成的路徑 +要生成的檔名
             Path imgFilePath = Path.of(imgPath);
