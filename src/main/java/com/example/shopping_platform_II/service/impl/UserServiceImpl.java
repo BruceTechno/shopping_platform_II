@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
 		if (result == null) {
 			return new LoginResponse(RtnCode.DATA_ERROR.getMessage());// 登入失敗或未激活
 		}
-		return new LoginResponse(RtnCode.SUCCESSFUL.getMessage());
+		return new LoginResponse(RtnCode.SUCCESSFUL.getMessage(),result);
 	}
 
 	@Override
@@ -121,6 +121,7 @@ public class UserServiceImpl implements UserService {
 		if (result == 0) {
 			return new UpdateResponse(RtnCode.DATA_ERROR.getMessage());
 		}
+
 		return new UpdateResponse(RtnCode.SUCCESSFUL.getMessage());
 	}
 
